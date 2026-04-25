@@ -1,0 +1,185 @@
+---
+const { pathname } = Astro.url;
+const isCurrent = (href: string) =>
+  href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
+
+const links: { href: string; label: string }[] = [
+  { href: "/services", label: "Services" },
+  { href: "/book", label: "Book" },
+  { href: "/courses", label: "Courses" },
+  { href: "/about", label: "About" },
+];
+---
+
+<header class="vr-nav">
+  <a class="vr-nav__brand" href="/">Valkyrie Remedy</a>
+
+  <button
+    type="button"
+    class="vr-nav__toggle"
+    aria-expanded="false"
+    aria-controls="vr-nav-menu"
+    aria-label="Open menu"
+  >
+    <span class="vr-nav__bar"></span>
+    <span class="vr-nav__bar"></span>
+  </button>
+
+  <nav id="vr-nav-menu" class="vr-nav__links" aria-label="Primary">
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          aria-current={isCurrent(link.href) ? "page" : undefined}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>
+
+<style>
+  .vr-nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 1.5rem var(--vr-gutter);
+    backdrop-filter: blur(8px);
+    background: color-mix(in oklab, var(--vr-ink) 88%, transparent);
+    font-family: var(--vr-mono);
+    font-size: var(--vr-step--1);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .vr-nav__brand {
+    font-family: var(--vr-serif);
+    font-style: italic;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: var(--vr-step-0);
+    color: var(--vr-bone);
+    position: relative;
+  }
+  .vr-nav__brand::before {
+    content: "—";
+    color: var(--vr-gold);
+    margin-right: 0.6em;
+    font-style: normal;
+  }
+
+  .vr-nav__links {
+    display: flex;
+    gap: clamp(1rem, 2vw, 2.25rem);
+    align-items: baseline;
+    color: var(--vr-bone-dim);
+  }
+  .vr-nav__links a {
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 220ms var(--vr-ease);
+  }
+  .vr-nav__links a::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 100%; bottom: 0;
+    height: 1px;
+    background: var(--vr-gold);
+    transition: right 320ms var(--vr-ease);
+  }
+  .vr-nav__links a:hover { color: var(--vr-bone); }
+  .vr-nav__links a:hover::after { right: 0; }
+  .vr-nav__links a[aria-current="page"] { color: var(--vr-gold); }
+  .vr-nav__links a[aria-current="page"]::after {
+    right: 0;
+    background: var(--vr-gold-dim);
+  }
+
+  /* ---------- Mobile hamburger ---------- */
+  .vr-nav__toggle {
+    display: none;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    border: 1px solid var(--vr-rule);
+    cursor: pointer;
+    padding: 0;
+  }
+  .vr-nav__bar {
+    display: block;
+    width: 16px;
+    height: 1px;
+    background: var(--vr-bone);
+    transition: transform 220ms var(--vr-ease);
+  }
+  .vr-nav__toggle[aria-expanded="true"] .vr-nav__bar:nth-child(1) {
+    transform: translateY(3px) rotate(45deg);
+  }
+  .vr-nav__toggle[aria-expanded="true"] .vr-nav__bar:nth-child(2) {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+
+  @media (max-width: 720px) {
+    .vr-nav__toggle { display: inline-flex; }
+
+    .vr-nav__links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--vr-ink);
+      border-bottom: 1px solid var(--vr-rule);
+      transform-origin: top;
+      transform: scaleY(0);
+      opacity: 0;
+      transition:
+        transform 220ms var(--vr-ease),
+        opacity 180ms var(--vr-ease);
+      pointer-events: none;
+    }
+    .vr-nav__links[data-open="true"] {
+      transform: scaleY(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .vr-nav__links a {
+      padding: 1rem var(--vr-gutter);
+      border-top: 1px solid var(--vr-rule);
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".vr-nav__toggle");
+  const menu = document.querySelector<HTMLElement>("#vr-nav-menu");
+
+  if (toggle && menu) {
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!open));
+      toggle.setAttribute("aria-label", open ? "Open menu" : "Close menu");
+      menu.dataset.open = String(!open);
+    });
+
+    menu.addEventListener("click", (e) => {
+      if ((e.target as HTMLElement).tagName === "A") {
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Open menu");
+        menu.dataset.open = "false";
+      }
+    });
+  }
+</script>

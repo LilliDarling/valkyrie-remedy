@@ -1,0 +1,156 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const CAL_URL = "https://cal.com/valkyrie-remedy/intro";
+---
+
+<Layout title="Book a Call">
+  <main class="vr-shell vr-stub">
+    <div class="vr-stub__row" data-reveal>
+      <span class="vr-eyebrow">— Book ⁄ §00</span>
+      <div class="vr-stack-3">
+        <h1 class="vr-h2">
+          Thirty minutes.<br />
+          <em>Paid, on purpose.</em>
+        </h1>
+        <p class="vr-body">
+          A small deposit filters the work down to people who actually want to
+          do it. Bring your repo, your URL, and your worst-case fear. I'll tell
+          you whether I'm the right person, and what to do either way. The fee
+          is credited in full toward any engagement we agree to.
+        </p>
+      </div>
+    </div>
+
+    <div class="vr-stub__row" data-reveal style="--reveal-delay: 160ms">
+      <span class="vr-eyebrow vr-eyebrow--dim">— Logistics</span>
+      <dl class="vr-book-spec">
+        <div>
+          <dt>Length</dt>
+          <dd>30 minutes · Zoom</dd>
+        </div>
+        <div>
+          <dt>Deposit</dt>
+          <dd>$80 · Credited if we work together</dd>
+        </div>
+        <div>
+          <dt>You bring</dt>
+          <dd>Repo access, deployed URL, the question keeping you up</dd>
+        </div>
+        <div>
+          <dt>I bring</dt>
+          <dd>A second pair of eyes, and an honest answer</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="vr-stub__row" data-reveal style="--reveal-delay: 280ms">
+      <span class="vr-eyebrow vr-eyebrow--dim">— Schedule</span>
+      <div class="vr-cal-frame" aria-label="Cal.com booking">
+        <div class="vr-cal-frame__head">
+          <span>cal.com / valkyrie-remedy / intro</span>
+          <span class="vr-tag"><span class="vr-tag__dot"></span>Embed slot</span>
+        </div>
+        <div class="vr-cal-frame__body">
+          <p class="vr-meta">Cal.com booking widget mounts here.</p>
+          <a
+            class="vr-cta"
+            href={CAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Open scheduler</span>
+            <span class="vr-cta__arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .vr-stub {
+    min-height: 70vh;
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+    padding: 4rem 0 6rem;
+  }
+  .vr-stub__row {
+    display: grid;
+    grid-template-columns: minmax(120px, 200px) 1fr;
+    gap: clamp(1rem, 4vw, 4rem);
+    align-items: start;
+    padding-block: 2rem;
+  }
+  @media (max-width: 720px) {
+    .vr-stub__row { grid-template-columns: 1fr; gap: 1rem; }
+  }
+
+  .vr-stack-3 > * + * { margin-top: 2rem; }
+
+  .vr-stub__row .vr-h2 em {
+    color: var(--vr-gold);
+    font-style: italic;
+  }
+
+  .vr-book-spec {
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+    max-width: 60ch;
+  }
+  .vr-book-spec > div {
+    display: grid;
+    grid-template-columns: 12ch 1fr;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--vr-rule);
+    align-items: baseline;
+  }
+  .vr-book-spec > div:last-child { border-bottom: 0; }
+  .vr-book-spec dt {
+    font-family: var(--vr-mono);
+    font-size: 0.74rem;
+    color: var(--vr-bone-faint);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .vr-book-spec dd {
+    margin: 0;
+    color: var(--vr-bone);
+    font-size: var(--vr-step-1);
+  }
+
+  .vr-cal-frame {
+    border: 1px solid var(--vr-rule);
+    background: var(--vr-ink-2);
+    max-width: 720px;
+  }
+  .vr-cal-frame__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--vr-rule);
+    font-family: var(--vr-mono);
+    font-size: 0.72rem;
+    color: var(--vr-bone-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .vr-cal-frame__body {
+    padding: clamp(2rem, 6vw, 4rem) 1.5rem;
+    display: grid;
+    gap: 1.5rem;
+    place-items: center;
+    text-align: center;
+    min-height: 280px;
+    background: repeating-linear-gradient(
+      135deg,
+      transparent 0 14px,
+      oklch(0.10 0.005 80) 14px 15px
+    );
+  }
+</style>

@@ -1,0 +1,234 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const outline: { num: string; title: string; body: string }[] = [
+  {
+    num: "i.",
+    title: "Reading what the AI gave you",
+    body: "The discipline of not trusting your own demo.",
+  },
+  {
+    num: "ii.",
+    title: "Replacing without breaking",
+    body: "Practical patterns for swapping foundations under live sites.",
+  },
+  {
+    num: "iii.",
+    title: "Quiet security for solo founders",
+    body: "The ten things that catch ninety percent of the danger.",
+  },
+];
+---
+
+<Layout title="Courses">
+  <main class="vr-shell vr-stub">
+    <div class="vr-stub__row" data-reveal>
+      <span class="vr-eyebrow">— Courses ⁄ §00</span>
+      <div class="vr-stack-3">
+        <p class="vr-meta vr-courses__status">
+          <span class="vr-tag__dot"></span> In preparation · Waitlist open
+        </p>
+        <h1 class="vr-h2">
+          A small course<br />
+          <em>for the people I keep meeting.</em>
+        </h1>
+        <p class="vr-body">
+          Founders who shipped a site with AI, hit the wall, and need to stop
+          being afraid of their own repo. The way I work, distilled into
+          something you can do without me. Available later this year. No
+          purchase flow yet — just a quiet list.
+        </p>
+      </div>
+    </div>
+
+    <div class="vr-stub__row" data-reveal style="--reveal-delay: 160ms">
+      <span class="vr-eyebrow vr-eyebrow--dim">— Waitlist</span>
+      <form class="vr-waitlist" id="waitlistForm" novalidate>
+        <label class="vr-meta" for="email">Email · for early access only</label>
+        <div class="vr-field">
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="you@yourdomain.co"
+            autocomplete="email"
+            spellcheck="false"
+            required
+          />
+          <button type="submit">Join</button>
+        </div>
+        <p class="vr-meta vr-waitlist__hint" id="waitlistHint">
+          No marketing. One note when the doors open.
+        </p>
+      </form>
+    </div>
+
+    <div class="vr-stub__row" data-reveal style="--reveal-delay: 280ms">
+      <span class="vr-eyebrow vr-eyebrow--dim">— Outline</span>
+      <ol class="vr-outline">
+        {
+          outline.map((o) => (
+            <li>
+              <span>{o.num}</span>
+              <div>
+                <h3>{o.title}</h3>
+                <p>{o.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .vr-stub {
+    min-height: 70vh;
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+    padding: 4rem 0 6rem;
+  }
+  .vr-stub__row {
+    display: grid;
+    grid-template-columns: minmax(120px, 200px) 1fr;
+    gap: clamp(1rem, 4vw, 4rem);
+    align-items: start;
+    padding-block: 2rem;
+  }
+  @media (max-width: 720px) {
+    .vr-stub__row { grid-template-columns: 1fr; gap: 1rem; }
+  }
+
+  .vr-stack-3 > * + * { margin-top: 2rem; }
+  .vr-h2 em { color: var(--vr-gold); font-style: italic; }
+
+  .vr-courses__status {
+    color: var(--vr-gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .vr-courses__status .vr-tag__dot {
+    animation: vr-pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes vr-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .vr-waitlist {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 480px;
+  }
+  .vr-waitlist__hint { color: var(--vr-bone-faint); }
+  .vr-waitlist.is-success .vr-field { border-color: var(--vr-gold); }
+  .vr-waitlist.is-success .vr-waitlist__hint { color: var(--vr-gold); }
+  .vr-waitlist.is-error .vr-waitlist__hint { color: oklch(0.72 0.10 60); }
+
+  .vr-field {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--vr-rule);
+    transition: border-color 220ms var(--vr-ease);
+    background: var(--vr-ink-2);
+  }
+  .vr-field:focus-within { border-color: var(--vr-gold); }
+  .vr-field input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    color: var(--vr-bone);
+    font-family: var(--vr-mono);
+    font-size: var(--vr-step--1);
+    letter-spacing: 0.04em;
+    padding: 1rem 1.1rem;
+    outline: none;
+  }
+  .vr-field input::placeholder { color: var(--vr-bone-faint); }
+  .vr-field button {
+    flex-shrink: 0;
+    border: 0;
+    border-left: 1px solid var(--vr-rule);
+    padding: 0 1.25rem;
+    font-family: var(--vr-mono);
+    font-size: var(--vr-step--1);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--vr-gold);
+    background: transparent;
+    cursor: pointer;
+    transition:
+      background 220ms var(--vr-ease),
+      color 220ms var(--vr-ease);
+  }
+  .vr-field button:hover { background: var(--vr-gold); color: var(--vr-ink); }
+
+  .vr-outline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .vr-outline li {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.25rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px dashed var(--vr-rule);
+  }
+  .vr-outline li:last-child { border-bottom: 0; }
+  .vr-outline span {
+    font-family: var(--vr-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: var(--vr-step-2);
+    color: var(--vr-gold);
+    line-height: 1;
+  }
+  .vr-outline h3 {
+    margin: 0 0 0.4rem;
+    font-family: var(--vr-serif);
+    font-weight: 500;
+    font-size: var(--vr-step-1);
+  }
+  .vr-outline p {
+    margin: 0;
+    color: var(--vr-bone-dim);
+    font-size: var(--vr-step-0);
+    max-width: 56ch;
+  }
+</style>
+
+<script>
+  const form = document.getElementById("waitlistForm") as HTMLFormElement | null;
+  const hint = document.getElementById("waitlistHint") as HTMLElement | null;
+
+  if (form && hint) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const input = form.querySelector<HTMLInputElement>('input[type="email"]');
+      const button = form.querySelector<HTMLButtonElement>("button");
+      if (!input || !button) return;
+
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+      if (!ok) {
+        form.classList.add("is-error");
+        form.classList.remove("is-success");
+        hint.textContent = "That email looks off — give it another go.";
+        return;
+      }
+
+      form.classList.add("is-success");
+      form.classList.remove("is-error");
+      input.disabled = true;
+      button.textContent = "✓ In";
+      hint.textContent =
+        "On the list. I'll write once, when the doors open.";
+    });
+  }
+</script>

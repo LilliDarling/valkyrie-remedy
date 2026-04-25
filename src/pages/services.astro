@@ -1,0 +1,675 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+type Service = {
+  id: string;
+  num: string;
+  title: string;
+  short: string;
+  eyebrow: string;
+  lede: string;
+  spec: {
+    duration: string;
+    format: string;
+    deliverable: string;
+    scope: string;
+    from: string;
+  };
+  checksTitle: string;
+  checks: { k: string; v: string }[];
+  protocol: { num: string; title: string; body: string }[];
+  fit: string;
+  alt?: boolean;
+};
+
+const services: Service[] = [
+  {
+    id: "code-review",
+    num: "01",
+    title: "Code review",
+    short: "Review",
+    eyebrow: "— 01 ⁄ Review",
+    lede: "A close, written read of what you shipped. I tell you what's broken, what's a ticking clock, and what's actually fine even though the AI told you it wasn't.",
+    spec: {
+      duration: "3–5 days",
+      format: "Async + 1 walkthrough",
+      deliverable: "Written report (PDF + repo annotations)",
+      scope: "Up to 1 codebase, 1 repo",
+      from: "$650",
+    },
+    checksTitle: "What gets read.",
+    checks: [
+      { k: "Architecture", v: "Folder shape, module seams, render strategy." },
+      { k: "Data flow", v: "State, fetching, caching. Where the lies live." },
+      { k: "Performance", v: "LCP, TTI, layout shift, payload weight." },
+      { k: "Accessibility", v: "WCAG AA pass — keyboard, contrast, semantics." },
+      { k: "SEO surface", v: "Meta, sitemap, structured data, indexability." },
+      { k: "Code health", v: "Dead paths, duplication, hidden coupling." },
+    ],
+    protocol: [
+      {
+        num: "i.",
+        title: "Kickoff",
+        body: "Repo access, deployed URL, the story of how it got here. I read everything before I write a word.",
+      },
+      {
+        num: "ii.",
+        title: "Read",
+        body: "Static analysis, runtime traces, manual trace of three real user paths. Quiet hours, no Slack.",
+      },
+      {
+        num: "iii.",
+        title: "Findings",
+        body: "Triaged by severity. Each one cites the file, the cause, and the cost of leaving it.",
+      },
+      {
+        num: "iv.",
+        title: "Walkthrough",
+        body: "Sixty minutes, on Zoom. We go line by line. You leave with a plan you can hand to anyone.",
+      },
+    ],
+    fit: "You shipped a site with Cursor, Lovable, v0, or Claude. It works in the demo. You're now afraid of three things at once and would like to know which fear to honor.",
+  },
+  {
+    id: "site-rebuild",
+    num: "02",
+    title: "Site rebuild",
+    short: "Rebuild",
+    eyebrow: "— 02 ⁄ Rebuild",
+    lede: "Same intent. New foundation. I keep what was right about your AI draft and replace the rest with code that won't surprise you in six months.",
+    spec: {
+      duration: "2–4 weeks",
+      format: "Private channel, daily notes",
+      deliverable: "Astro site, deployed, documented",
+      scope: "Up to 12 page templates",
+      from: "$3,200",
+    },
+    checksTitle: "What gets replaced.",
+    checks: [
+      { k: "Foundation", v: "Astro, content collections, typed routes." },
+      {
+        k: "Component library",
+        v: "One small, owned set. No framework salad.",
+      },
+      {
+        k: "Forms & integrations",
+        v: "Real validation, real error states, real receipts.",
+      },
+      {
+        k: "Content model",
+        v: "Editable by you, no developer required.",
+      },
+      {
+        k: "Deploy pipeline",
+        v: "Preview branches, atomic deploys, rollbacks.",
+      },
+      { k: "Documentation", v: "One README. Boring on purpose." },
+    ],
+    protocol: [
+      {
+        num: "i.",
+        title: "Scope",
+        body: "We agree on a fixed scope. I write the proposal. You sign before I open an editor.",
+      },
+      {
+        num: "ii.",
+        title: "Foundation week",
+        body: "Repo, design tokens, two reference templates. You see the spine in five days.",
+      },
+      {
+        num: "iii.",
+        title: "Build",
+        body: "Templates, content, integrations. Daily written notes. Weekly preview links.",
+      },
+      {
+        num: "iv.",
+        title: "Handoff",
+        body: "Deploy, walkthrough session, 30-day warranty on anything I built. After that, we're done.",
+      },
+    ],
+    fit: "You're spending more time fighting the AI prompt than running your business. Or someone respectable is about to look at your repo and you'd like that to be uneventful.",
+    alt: true,
+  },
+  {
+    id: "security-audit",
+    num: "03",
+    title: "Security audit",
+    short: "Audit",
+    eyebrow: "— 03 ⁄ Audit",
+    lede: "Quietly tested for the things AI assistants forget. Keys, headers, payloads, the back door behind the polite front door.",
+    spec: {
+      duration: "5–7 days",
+      format: "Async + signed report",
+      deliverable: "Findings + remediation plan",
+      scope: "1 site, 1 backend, 1 vendor surface",
+      from: "$1,400",
+    },
+    checksTitle: "What gets tested.",
+    checks: [
+      {
+        k: "Secrets surface",
+        v: "Env vars, hard-coded keys, leaked tokens in client bundles.",
+      },
+      {
+        k: "Auth flow",
+        v: "Session, CSRF, brute-force resilience, logout integrity.",
+      },
+      {
+        k: "Headers & transport",
+        v: "HSTS, CSP, referrer, frame ancestors, MIME sniffing.",
+      },
+      {
+        k: "Inputs",
+        v: "XSS, SQLi/NoSQLi, file upload, server-side validation.",
+      },
+      {
+        k: "Dependencies",
+        v: "Known CVEs, abandoned packages, lockfile drift.",
+      },
+      {
+        k: "Vendor blast radius",
+        v: "What happens if Stripe, Supabase, or your CMS is breached.",
+      },
+    ],
+    protocol: [
+      {
+        num: "i.",
+        title: "Authorization",
+        body: "Written scope of testing. NDA. We agree on what I'm allowed to touch and when.",
+      },
+      {
+        num: "ii.",
+        title: "Reconnaissance",
+        body: "Surface mapping. Public exposure. Bundles, sourcemaps, the things you forgot were public.",
+      },
+      {
+        num: "iii.",
+        title: "Probing",
+        body: "Manual + automated. Each finding gets a CVSS, a proof, and a fix.",
+      },
+      {
+        num: "iv.",
+        title: "Report",
+        body: "Signed PDF you can hand to a partner, an auditor, or a board. Plus a quiet plan to fix it.",
+      },
+    ],
+    fit: "You're about to take payments, take data, or take fundraising — and you don't know what's leaking from the side of the building you can't see.",
+  },
+];
+---
+
+<Layout
+  title="Services"
+  description="Code review, site rebuild, and security audit. Three engagements — scoped, fixed-price, finite."
+>
+  <main class="vr-services">
+    <!-- ============ Page header ============ -->
+    <section class="vr-services__head vr-shell" data-reveal>
+      <span class="vr-eyebrow">— Services ⁄ §00</span>
+      <h1 class="vr-h2 vr-services__title">
+        Three things.<br />
+        <em>Each one does exactly what it says.</em>
+      </h1>
+      <p class="vr-body vr-services__lede">
+        Engagements are scoped, fixed-price, and finite. I work alone. I don't
+        sell retainers, audits-as-subscription, or coaching disguised as code.
+      </p>
+    </section>
+
+    <!-- ============ Sticky tabs ============ -->
+    <nav class="vr-tabs" aria-label="Services">
+      <div class="vr-tabs__inner vr-shell">
+        {
+          services.map((s) => (
+            <a class="vr-tab" href={`#${s.id}`} data-tab={s.id}>
+              <span class="vr-tab__num">{s.num}</span>
+              <span class="vr-tab__name">{s.title}</span>
+              <span class="vr-tab__sub">From {s.spec.from}</span>
+            </a>
+          ))
+        }
+      </div>
+    </nav>
+
+    <!-- ============ Service articles ============ -->
+    {
+      services.map((s) => (
+        <article
+          class:list={["vr-service", { "vr-service--alt": s.alt }]}
+          id={s.id}
+        >
+          <div class="vr-service__inner vr-shell">
+            <header class="vr-service__head" data-reveal>
+              <span class="vr-eyebrow">{s.eyebrow}</span>
+              <h2 class="vr-h2 vr-service__title">{s.title}.</h2>
+              <p class="vr-lede vr-service__lede">{s.lede}</p>
+            </header>
+
+            <div class="vr-service__grid">
+              <aside
+                class="vr-spec"
+                data-reveal
+                style="--reveal-delay: 120ms"
+              >
+                <div class="vr-spec__head">Specification</div>
+                <dl class="vr-spec__list">
+                  <div>
+                    <dt>Duration</dt>
+                    <dd>{s.spec.duration}</dd>
+                  </div>
+                  <div>
+                    <dt>Format</dt>
+                    <dd>{s.spec.format}</dd>
+                  </div>
+                  <div>
+                    <dt>Deliverable</dt>
+                    <dd>{s.spec.deliverable}</dd>
+                  </div>
+                  <div>
+                    <dt>Scope</dt>
+                    <dd>{s.spec.scope}</dd>
+                  </div>
+                  <div>
+                    <dt>From</dt>
+                    <dd>
+                      <strong>{s.spec.from}</strong>
+                    </dd>
+                  </div>
+                </dl>
+                <a class="vr-cta vr-spec__cta" href="/book">
+                  <span>Book a Call</span>
+                  <span class="vr-cta__arrow">→</span>
+                </a>
+              </aside>
+
+              <div
+                class="vr-service__body"
+                data-reveal
+                style="--reveal-delay: 200ms"
+              >
+                <h3 class="vr-h3 vr-service__h3">{s.checksTitle}</h3>
+                <ul class="vr-checklist">
+                  {s.checks.map((c) => (
+                    <li>
+                      <span>{c.k}</span>
+                      <em>{c.v}</em>
+                    </li>
+                  ))}
+                </ul>
+
+                <h3 class="vr-h3 vr-service__h3">How it goes.</h3>
+                <ol class="vr-protocol">
+                  {s.protocol.map((p) => (
+                    <li>
+                      <span class="vr-protocol__step">{p.num}</span>
+                      <div>
+                        <h4>{p.title}</h4>
+                        <p>{p.body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+
+                <h3 class="vr-h3 vr-service__h3">Right for you if…</h3>
+                <p class="vr-body">{s.fit}</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+
+    <!-- ============ Bottom CTA ============ -->
+    <section class="vr-services__final vr-shell">
+      <div class="vr-services__final-inner" data-reveal>
+        <span class="vr-eyebrow">— What now</span>
+        <h2 class="vr-h2">
+          Not sure which one?<br />
+          <em>That's what the call is for.</em>
+        </h2>
+        <p class="vr-body">
+          Thirty minutes. I look at the site with you, name what I see, and
+          tell you which of the three (or none) is honest.
+        </p>
+        <a class="vr-cta" href="/book">
+          <span>Book a Call</span>
+          <span class="vr-cta__arrow">→</span>
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  /* ===== Page header ===== */
+  .vr-services__head {
+    padding: 3rem 0 4rem;
+    display: grid;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--vr-rule);
+  }
+  .vr-services__title { max-width: 22ch; }
+  .vr-services__title em { color: var(--vr-gold); font-style: italic; }
+  .vr-services__lede {
+    color: var(--vr-bone-dim);
+    max-width: 50ch;
+    font-size: var(--vr-step-1);
+  }
+
+  /* ===== Sticky tabs ===== */
+  .vr-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: oklch(0.06 0 0 / 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--vr-rule);
+  }
+  .vr-tabs__inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .vr-tab {
+    padding: 1.1rem 0;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    gap: 0.75rem;
+    border-right: 1px solid var(--vr-rule);
+    transition:
+      background 240ms var(--vr-ease),
+      color 240ms var(--vr-ease);
+    position: relative;
+    color: var(--vr-bone-dim);
+  }
+  .vr-tab:last-child { border-right: 0; }
+  .vr-tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -1px;
+    height: 1px;
+    background: var(--vr-gold);
+    transition: right 320ms var(--vr-ease);
+  }
+  .vr-tab:hover {
+    color: var(--vr-bone);
+    background: oklch(0.10 0.005 80 / 0.7);
+  }
+  .vr-tab.is-active { color: var(--vr-bone); }
+  .vr-tab.is-active::after { right: 0; }
+  .vr-tab__num {
+    font-family: var(--vr-mono);
+    color: var(--vr-gold);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    padding-left: clamp(0.5rem, 2vw, 1.25rem);
+  }
+  .vr-tab__name {
+    font-family: var(--vr-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: var(--vr-step-1);
+    letter-spacing: -0.005em;
+  }
+  .vr-tab__sub {
+    font-family: var(--vr-mono);
+    font-size: 0.72rem;
+    color: var(--vr-bone-faint);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding-right: clamp(0.5rem, 2vw, 1.25rem);
+  }
+  @media (max-width: 720px) {
+    .vr-tab__sub { display: none; }
+    .vr-tab { grid-template-columns: auto 1fr; }
+  }
+
+  /* ===== Service article ===== */
+  .vr-service {
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--vr-rule);
+    scroll-margin-top: 90px;
+  }
+  .vr-service--alt {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      oklch(0.085 0.005 80) 30%,
+      oklch(0.085 0.005 80) 70%,
+      transparent 100%
+    );
+  }
+  .vr-service__head {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 60ch;
+    margin-bottom: 4rem;
+  }
+  .vr-service__title em { color: var(--vr-gold); font-style: italic; }
+  .vr-service__lede { color: var(--vr-bone); }
+
+  .vr-lede {
+    font-family: var(--vr-serif);
+    font-size: var(--vr-step-2);
+    line-height: 1.35;
+    color: var(--vr-bone);
+    font-weight: 400;
+    text-wrap: pretty;
+    max-width: 32ch;
+  }
+
+  .vr-service__grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .vr-service__grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== Spec card ===== */
+  .vr-spec {
+    border: 1px solid var(--vr-rule);
+    background: var(--vr-ink-2);
+    position: sticky;
+    top: 110px;
+  }
+  .vr-spec__head {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--vr-rule);
+    font-family: var(--vr-mono);
+    font-size: 0.72rem;
+    color: var(--vr-gold);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .vr-spec__list {
+    margin: 0;
+    padding: 1rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+  .vr-spec__list > div {
+    display: grid;
+    grid-template-columns: 9ch 1fr;
+    gap: 0.75rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px dashed var(--vr-rule);
+    align-items: baseline;
+  }
+  .vr-spec__list > div:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .vr-spec__list dt {
+    font-family: var(--vr-mono);
+    font-size: 0.7rem;
+    color: var(--vr-bone-faint);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .vr-spec__list dd {
+    margin: 0;
+    color: var(--vr-bone);
+    font-size: var(--vr-step-0);
+  }
+  .vr-spec__list dd strong {
+    color: var(--vr-gold);
+    font-weight: 500;
+    font-family: var(--vr-mono);
+    letter-spacing: 0.04em;
+  }
+  .vr-spec__cta {
+    margin: 0 1rem 1rem;
+    width: calc(100% - 2rem);
+    justify-content: center;
+  }
+
+  /* ===== Service body ===== */
+  .vr-service__body {
+    display: grid;
+    gap: 2rem;
+  }
+  .vr-service__h3 {
+    font-family: var(--vr-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: var(--vr-step-2);
+    color: var(--vr-bone);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--vr-rule);
+    margin: 0;
+  }
+  .vr-service__body > .vr-service__h3:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .vr-checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+  @media (max-width: 700px) {
+    .vr-checklist { grid-template-columns: 1fr; }
+  }
+  .vr-checklist li {
+    padding: 1.1rem 1rem 1.1rem 0;
+    border-bottom: 1px solid var(--vr-rule);
+    display: grid;
+    grid-template-columns: minmax(120px, 160px) 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+  .vr-checklist li:nth-child(odd) {
+    border-right: 1px solid var(--vr-rule);
+    padding-right: 1.5rem;
+  }
+  @media (max-width: 700px) {
+    .vr-checklist li:nth-child(odd) {
+      border-right: 0;
+      padding-right: 1rem;
+    }
+  }
+  .vr-checklist span {
+    font-family: var(--vr-mono);
+    font-size: 0.74rem;
+    color: var(--vr-gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .vr-checklist em {
+    font-family: var(--vr-serif);
+    font-style: normal;
+    font-size: var(--vr-step-0);
+    color: var(--vr-bone-dim);
+    line-height: 1.45;
+  }
+
+  .vr-protocol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .vr-protocol li {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.25rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px dashed var(--vr-rule);
+  }
+  .vr-protocol li:last-child { border-bottom: 0; }
+  .vr-protocol__step {
+    font-family: var(--vr-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: var(--vr-step-2);
+    color: var(--vr-gold);
+    line-height: 1;
+  }
+  .vr-protocol h4 {
+    margin: 0 0 0.4rem;
+    font-family: var(--vr-serif);
+    font-weight: 500;
+    font-size: var(--vr-step-1);
+    letter-spacing: -0.005em;
+  }
+  .vr-protocol p {
+    margin: 0;
+    color: var(--vr-bone-dim);
+    font-size: var(--vr-step-0);
+    max-width: 56ch;
+  }
+
+  /* ===== Final ===== */
+  .vr-services__final { padding: 6rem 0 8rem; }
+  .vr-services__final-inner {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 36ch;
+  }
+  .vr-services__final-inner em {
+    color: var(--vr-gold);
+    font-style: italic;
+  }
+</style>
+
+<script>
+  // Sticky-tab active state, driven by which section is in view
+  const ids = ["code-review", "site-rebuild", "security-audit"];
+  const sections = ids
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null);
+  const tabs = Array.from(document.querySelectorAll<HTMLElement>(".vr-tab"));
+
+  const setActive = (id: string) => {
+    tabs.forEach((t) => t.classList.toggle("is-active", t.dataset.tab === id));
+  };
+
+  if ("IntersectionObserver" in window && sections.length) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { threshold: [0.15, 0.4], rootMargin: "-100px 0px -50% 0px" }
+    );
+    sections.forEach((s) => io.observe(s));
+  }
+
+  if (location.hash) setActive(location.hash.slice(1));
+  else setActive("code-review");
+</script>

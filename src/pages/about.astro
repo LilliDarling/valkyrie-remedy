@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About">
+  <main class="vr-shell vr-stub">
+    <div class="vr-stub__row" data-reveal>
+      <span class="vr-eyebrow">— About ⁄ §00</span>
+      <div class="vr-about">
+        <p class="vr-about__lede">
+          I'm an engineer. I read code for a living and I'm honest about what I
+          see. People started hiring me to come in after the AI got tired — to
+          look at the site, name the three things that were wrong, and quote a
+          number for fixing them. That turned out to be a job. I take it
+          seriously, I work alone, and I don't pretend to be anything other
+          than the person you call when something is actually broken. If the
+          site you built deserves to last, I can probably help. If it doesn't,
+          I'll tell you that too.
+        </p>
+        <p class="vr-about__sign">— V.</p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .vr-stub {
+    min-height: 70vh;
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+    padding: 4rem 0 6rem;
+  }
+  .vr-stub__row {
+    display: grid;
+    grid-template-columns: minmax(120px, 200px) 1fr;
+    gap: clamp(1rem, 4vw, 4rem);
+    align-items: start;
+    padding-block: 2rem;
+  }
+  @media (max-width: 720px) {
+    .vr-stub__row { grid-template-columns: 1fr; gap: 1rem; }
+  }
+
+  .vr-about {
+    max-width: 60ch;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .vr-about__lede {
+    font-family: var(--vr-serif);
+    font-size: var(--vr-step-2);
+    line-height: 1.45;
+    color: var(--vr-bone);
+    text-wrap: pretty;
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .vr-about__lede::first-letter {
+    font-size: 3em;
+    float: left;
+    line-height: 0.85;
+    padding: 0.05em 0.12em 0 0;
+    color: var(--vr-gold);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .vr-about__sign {
+    margin: 0;
+    font-family: var(--vr-serif);
+    font-style: italic;
+    font-size: var(--vr-step-2);
+    color: var(--vr-gold);
+  }
+</style>

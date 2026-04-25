@@ -1,0 +1,479 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const services: {
+  num: string;
+  title: string;
+  lede: string;
+  duration: string;
+  format: string;
+  from: string;
+  href: string;
+}[] = [
+  {
+    num: "01",
+    title: "Code review",
+    lede: "A close read of what you shipped — where it works, where it lies, where it falls over the moment a real user shows up.",
+    duration: "3–5 days",
+    format: "Written report + walkthrough",
+    from: "$650",
+    href: "/services#code-review",
+  },
+  {
+    num: "02",
+    title: "Site rebuild",
+    lede: "Same intent, real foundation. I keep what was right and replace the rest with code that won't surprise you on Monday.",
+    duration: "2–4 weeks",
+    format: "Astro site, deployed",
+    from: "$3,200",
+    href: "/services#site-rebuild",
+  },
+  {
+    num: "03",
+    title: "Security audit",
+    lede: "A quiet sweep for the things AI assistants forget — keys, headers, payloads, the back door behind the polite front door.",
+    duration: "5–7 days",
+    format: "Findings + remediation plan",
+    from: "$1,400",
+    href: "/services#security-audit",
+  },
+];
+
+const steps: { num: string; title: string; body: string }[] = [
+  {
+    num: "·01",
+    title: "Intro call",
+    body: "Thirty minutes, paid. We confirm the work is real and the fit is honest.",
+  },
+  {
+    num: "·02",
+    title: "Scoped proposal",
+    body: "Written, fixed, boring on purpose. You see the plan before signing.",
+  },
+  {
+    num: "·03",
+    title: "The work",
+    body: "I work in a private channel with daily notes. You always know the state.",
+  },
+  {
+    num: "·04",
+    title: "Handoff",
+    body: "Documented. You leave with a site you can hand to anyone — including yourself.",
+  },
+];
+---
+
+<Layout title="Valkyrie Remedy">
+  <!-- ============ HERO ============ -->
+  <section class="vr-hero" aria-label="Hero">
+    <div class="vr-hero__inner vr-shell">
+      <!-- status bar -->
+      <div class="vr-hero__status" data-reveal style="--reveal-delay: 0ms">
+        <span class="vr-hero__status-cell">
+          <span class="vr-tag__dot"></span>
+          <span>Now booking · Q2 / Q3 2026</span>
+        </span>
+        <span class="vr-hero__status-cell vr-hero__status-cell--right">
+          <span class="vr-meta">Solo practice · Remote</span>
+        </span>
+      </div>
+
+      <div class="vr-forge">
+        <div
+          class="vr-forge__sigil"
+          aria-hidden="true"
+          data-reveal
+          style="--reveal-delay: 120ms"
+        >
+          <svg viewBox="0 0 200 220" width="100%" height="100%">
+            <g fill="none" stroke="currentColor" stroke-width="1.4">
+              <circle cx="100" cy="110" r="92" stroke-opacity=".35"></circle>
+              <circle cx="100" cy="110" r="74" stroke-opacity=".18"></circle>
+              <path d="M40 38 L100 168 L160 38" stroke-width="2"></path>
+              <path d="M70 110 L130 110"></path>
+              <path d="M100 110 L132 168" stroke-width="2"></path>
+              <path
+                d="M100 8 V22 M100 198 V212 M8 110 H22 M178 110 H192"
+                stroke-opacity=".55"></path>
+            </g>
+            <text
+              x="100"
+              y="110"
+              text-anchor="middle"
+              dominant-baseline="middle"
+              font-family="JetBrains Mono, monospace"
+              font-size="7"
+              letter-spacing="3"
+              fill="currentColor"
+              opacity=".6">VR · MMXXVI</text>
+          </svg>
+        </div>
+
+        <div class="vr-forge__type">
+          <p class="vr-eyebrow" data-reveal style="--reveal-delay: 220ms">
+            — One engineer, by design
+          </p>
+
+          <h1 class="vr-h1 vr-forge__h1" data-reveal style="--reveal-delay: 320ms">
+            Your code has<br />
+            <em>vibes.</em><br />
+            I have the remedy.
+          </h1>
+
+          <p class="vr-body" data-reveal style="--reveal-delay: 480ms">
+            Code reviews, rebuilds, and security audits for founders and
+            creators who shipped a site with AI and now need it made real. No
+            retainers. No coaching. The fixer who just walked in the room.
+          </p>
+
+          <div class="vr-row" data-reveal style="--reveal-delay: 600ms">
+            <a class="vr-cta" href="/book">
+              <span>Book a Call</span>
+              <span class="vr-cta__arrow">→</span>
+            </a>
+            <a class="vr-cta vr-cta--ghost" href="/services">
+              <span>See Services</span>
+              <span class="vr-cta__arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE WORK ============ -->
+  <section class="vr-work vr-shell" id="work">
+    <header class="vr-work__head" data-reveal>
+      <span class="vr-eyebrow">— What I do ⁄ §02</span>
+      <h2 class="vr-h2 vr-work__title">
+        Three things.<br />
+        <em>One person.</em>
+      </h2>
+    </header>
+
+    <ol class="vr-work__list">
+      {
+        services.map((s, i) => (
+          <li
+            class="vr-svc"
+            data-reveal
+            style={`--reveal-delay: ${120 + i * 120}ms`}
+          >
+            <header class="vr-svc__top">
+              <span class="vr-svc__num">{s.num}</span>
+              <span class="vr-svc__from">From {s.from}</span>
+            </header>
+            <h3 class="vr-h3 vr-svc__title">{s.title}</h3>
+            <p class="vr-svc__lede">{s.lede}</p>
+            <dl class="vr-svc__meta">
+              <div>
+                <dt>Duration</dt>
+                <dd>{s.duration}</dd>
+              </div>
+              <div>
+                <dt>Format</dt>
+                <dd>{s.format}</dd>
+              </div>
+            </dl>
+            <a class="vr-svc__more" href={s.href}>
+              Read more <span aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- ============ PROCESS ============ -->
+  <section class="vr-process vr-shell">
+    <div class="vr-process__inner">
+      <div class="vr-process__head" data-reveal>
+        <span class="vr-eyebrow">— Process ⁄ §03</span>
+        <h2 class="vr-h2">
+          How the work<br /><em>starts.</em>
+        </h2>
+      </div>
+
+      <ol class="vr-process__steps">
+        {
+          steps.map((step, i) => (
+            <li data-reveal style={`--reveal-delay: ${120 + i * 120}ms`}>
+              <span class="vr-process__num">{step.num}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="vr-final vr-shell">
+    <div class="vr-final__inner" data-reveal>
+      <h2 class="vr-h2 vr-final__h">
+        Something's off,<br />
+        <em>and you know it.</em>
+      </h2>
+      <p class="vr-body vr-final__p">
+        Bring the site. Bring the dread. Thirty minutes is enough to tell you
+        whether I'm the right person, and what comes next either way.
+      </p>
+      <a class="vr-cta" href="/book">
+        <span>Book a Call</span>
+        <span class="vr-cta__arrow">→</span>
+      </a>
+      <p class="vr-meta vr-final__meta">
+        $80 deposit · Credited toward any engagement
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* ===== Hero ===== */
+  .vr-hero { padding: 1rem 0 6rem; }
+  .vr-hero__inner { position: relative; }
+
+  .vr-hero__status {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-top: 1px solid var(--vr-rule);
+    border-bottom: 1px solid var(--vr-rule);
+    font-family: var(--vr-mono);
+    font-size: var(--vr-step--1);
+    color: var(--vr-bone-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: clamp(2.5rem, 6vw, 5rem);
+  }
+  .vr-hero__status-cell {
+    display: inline-flex;
+    gap: 0.6rem;
+    align-items: center;
+  }
+  .vr-hero__status-cell--right { justify-content: flex-end; }
+
+  @media (max-width: 600px) {
+    .vr-hero__status { grid-template-columns: 1fr; gap: 0.4rem; }
+    .vr-hero__status-cell--right { justify-content: flex-start; }
+  }
+
+  /* Forge */
+  .vr-forge {
+    display: grid;
+    grid-template-columns: minmax(220px, 0.6fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: center;
+    padding: 2rem 0 1rem;
+  }
+  @media (max-width: 800px) {
+    .vr-forge { grid-template-columns: 1fr; }
+  }
+
+  .vr-forge__sigil {
+    color: var(--vr-gold);
+    aspect-ratio: 1;
+    max-width: 360px;
+    filter: drop-shadow(0 0 30px oklch(0.62 0.09 75 / 0.18));
+    animation: vr-sigil 9s ease-in-out infinite alternate;
+  }
+  @keyframes vr-sigil {
+    from { transform: rotate(-0.4deg) translateY(0); }
+    to   { transform: rotate(0.4deg) translateY(-3px); }
+  }
+
+  .vr-forge__type { display: grid; gap: 1.4rem; }
+  .vr-forge__h1 em { color: var(--vr-gold); font-style: italic; }
+
+  /* ===== The work ===== */
+  .vr-work { padding: clamp(3rem, 8vw, 5rem) 0; }
+  .vr-work__head {
+    display: grid;
+    grid-template-columns: minmax(120px, 200px) 1fr;
+    gap: clamp(1rem, 4vw, 4rem);
+    align-items: end;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--vr-rule);
+  }
+  @media (max-width: 720px) {
+    .vr-work__head { grid-template-columns: 1fr; }
+  }
+  .vr-work__title em { color: var(--vr-gold); font-style: italic; }
+
+  .vr-work__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  @media (max-width: 900px) {
+    .vr-work__list { grid-template-columns: 1fr; }
+  }
+
+  .vr-svc {
+    padding: 3rem 2rem 3rem 0;
+    border-right: 1px solid var(--vr-rule);
+    display: grid;
+    gap: 1.2rem;
+    align-content: start;
+    transition: background 280ms var(--vr-ease);
+  }
+  .vr-svc:hover {
+    background: linear-gradient(180deg, oklch(0.10 0.005 80) 0%, transparent 100%);
+  }
+  .vr-svc:last-child { border-right: 0; }
+  @media (max-width: 900px) {
+    .vr-svc {
+      border-right: 0;
+      border-bottom: 1px solid var(--vr-rule);
+      padding: 2.5rem 0;
+    }
+    .vr-svc:last-child { border-bottom: 0; }
+  }
+
+  .vr-svc__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--vr-bone-faint);
+    font-family: var(--vr-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .vr-svc__num {
+    font-family: var(--vr-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--vr-gold);
+    letter-spacing: 0;
+  }
+  .vr-svc__from { color: var(--vr-gold); }
+
+  .vr-svc__title { color: var(--vr-bone); }
+
+  .vr-svc__lede {
+    color: var(--vr-bone-dim);
+    font-size: var(--vr-step-1);
+    line-height: 1.45;
+    max-width: 30ch;
+  }
+
+  .vr-svc__meta {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 1rem 0;
+    border-top: 1px dashed var(--vr-rule);
+    font-family: var(--vr-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .vr-svc__meta > div {
+    display: grid;
+    grid-template-columns: 8ch 1fr;
+    gap: 0.6rem;
+  }
+  .vr-svc__meta dt { color: var(--vr-bone-faint); margin: 0; }
+  .vr-svc__meta dd { color: var(--vr-bone); margin: 0; }
+
+  .vr-svc__more {
+    color: var(--vr-gold);
+    font-family: var(--vr-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    align-self: start;
+    transition:
+      border-color 240ms var(--vr-ease),
+      color 240ms var(--vr-ease);
+  }
+  .vr-svc__more:hover {
+    color: var(--vr-gold-warm);
+    border-color: var(--vr-gold);
+  }
+
+  /* ===== Process ===== */
+  .vr-process { padding: clamp(4rem, 8vw, 6rem) 0; }
+  .vr-process__inner {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr);
+    gap: clamp(2rem, 5vw, 5rem);
+  }
+  @media (max-width: 900px) {
+    .vr-process__inner { grid-template-columns: 1fr; }
+  }
+  .vr-process__head {
+    display: grid;
+    gap: 1.2rem;
+    align-content: start;
+  }
+  .vr-process__head em { color: var(--vr-gold); font-style: italic; }
+
+  .vr-process__steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1px;
+    background: var(--vr-rule);
+  }
+  .vr-process__steps li {
+    background: var(--vr-ink);
+    padding: 1.6rem 0;
+    display: grid;
+    grid-template-columns: 80px minmax(140px, 220px) 1fr;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: baseline;
+  }
+  @media (max-width: 720px) {
+    .vr-process__steps li { grid-template-columns: 60px 1fr; }
+    .vr-process__steps li p { grid-column: 2; }
+  }
+  .vr-process__steps h3 {
+    margin: 0;
+    font-family: var(--vr-serif);
+    font-weight: 500;
+    font-size: var(--vr-step-2);
+    letter-spacing: -0.01em;
+  }
+  .vr-process__steps p {
+    margin: 0;
+    color: var(--vr-bone-dim);
+    font-size: var(--vr-step-1);
+    max-width: 48ch;
+  }
+  .vr-process__num {
+    font-family: var(--vr-mono);
+    font-size: 0.78rem;
+    color: var(--vr-gold);
+    letter-spacing: 0.18em;
+  }
+
+  /* ===== Final ===== */
+  .vr-final { padding: clamp(4rem, 8vw, 6rem) 0 8rem; }
+  .vr-final__inner {
+    display: grid;
+    gap: 2rem;
+    border-top: 1px solid var(--vr-rule);
+    padding-top: 4rem;
+    max-width: 36ch;
+  }
+  .vr-final__h em { color: var(--vr-gold); font-style: italic; }
+  .vr-final__p { max-width: 48ch; }
+  .vr-final__meta { color: var(--vr-bone-faint); }
+
+  .vr-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>
