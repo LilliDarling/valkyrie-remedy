@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FinalCta from "../components/FinalCta.astro";
 
 type Service = {
   id: string;
@@ -35,7 +36,7 @@ const services: Service[] = [
       format: "Written report + walkthrough",
       deliverable: "PDF report + repo annotations",
       scope: "1 codebase, 1 repo",
-      from: "$650",
+      from: "By project",
     },
     checksTitle: "What gets read.",
     checks: [
@@ -65,10 +66,10 @@ const services: Service[] = [
       {
         num: "iv.",
         title: "Walkthrough",
-        body: "Sixty minutes, on Zoom. We go line by line. You leave with a plan you can hand to anyone.",
+        body: "Sixty minutes, on Zoom. We go through the findings. You leave with a plan you can hand to anyone.",
       },
     ],
-    fit: "You shipped a site with Cursor, Lovable, v0, or Claude. It works in the demo. You're now afraid of three things at once and would like to know which fear to honor.",
+    fit: "You shipped a site with Cursor, Lovable, Replit, Claude, or another platform. It works in the demo. You're now afraid of three things at once and would like to know which fear to honor.",
   },
   {
     id: "security-audit",
@@ -80,9 +81,9 @@ const services: Service[] = [
     spec: {
       duration: "5–7 days",
       format: "Findings + remediation plan",
-      deliverable: "Signed report + fix order",
+      deliverable: "PDF report + fix order",
       scope: "1 site, 1 backend, 1 vendor surface",
-      from: "$1,400",
+      from: "By project",
     },
     checksTitle: "What gets tested.",
     checks: [
@@ -130,7 +131,7 @@ const services: Service[] = [
       {
         num: "iv.",
         title: "Report",
-        body: "Signed PDF you can hand to a partner, an auditor, or a board. Plus a quiet plan to fix it.",
+        body: "A PDF you can hand to a partner, an auditor, or a board. Plus a quiet plan to fix it.",
       },
     ],
     fit: "You're about to take payments, take data, or take fundraising — and you don't know what's leaking from the side of the building you can't see.",
@@ -148,11 +149,11 @@ const services: Service[] = [
       format: "Scoped delivery, deployed + documented",
       deliverable: "Production site, repo, runbook",
       scope: "Up to 12 page templates",
-      from: "$3,200",
+      from: "By project",
     },
     checksTitle: "What gets replaced.",
     checks: [
-      { k: "Foundation", v: "Astro, content collections, typed routes." },
+      { k: "Foundation", v: "Right-sized framework, typed, structured, owned." },
       {
         k: "Component library",
         v: "One small, owned set. No framework salad.",
@@ -190,7 +191,7 @@ const services: Service[] = [
       {
         num: "iv.",
         title: "Handoff",
-        body: "Deploy, walkthrough session, 30-day warranty on anything I built. After that, we're done.",
+        body: "Deploy, walkthrough session, 30-day warranty on anything I built. Clean handoff.",
       },
     ],
     fit: "You're spending more time fighting the AI prompt than running your business. Or someone respectable is about to look at your repo and you'd like that to be uneventful.",
@@ -240,7 +241,7 @@ const services: Service[] = [
       {
         num: "i.",
         title: "Assessment",
-        body: "Two weeks reading the system under real conditions. Load profiles, traces, the parts you've been afraid to touch.",
+        body: "Reading the system under real conditions — load profiles, traces, the parts you've been afraid to touch.",
       },
       {
         num: "ii.",
@@ -270,9 +271,9 @@ const services: Service[] = [
     spec: {
       duration: "By engagement",
       format: "Live working sessions",
-      deliverable: "Pair-programmed progress + recordings",
+      deliverable: "Session recordings + written notes",
       scope: "1 founder, 1 codebase",
-      from: "$400 / session",
+      from: "By bundle",
     },
     checksTitle: "What we work on.",
     checks: [
@@ -315,7 +316,7 @@ const services: Service[] = [
       {
         num: "iii.",
         title: "Async",
-        body: "I read what you wrote between sessions. Notes back, questions answered, no waiting.",
+        body: "I read what you wrote between sessions. Notes back, questions answered.",
       },
       {
         num: "iv.",
@@ -332,13 +333,13 @@ const services: Service[] = [
     title: "Retainer",
     short: "Retainer",
     eyebrow: "— 06 ⁄ Retainer",
-    lede: "Ongoing counsel and capacity, by the month. Senior expertise always within reach for what you're shipping next — without the cost or commitment of a hire.",
+    lede: "Ongoing counsel and capacity, by the month. Senior expertise always within reach for what you're shipping next.",
     spec: {
       duration: "Monthly",
       format: "Async review + quick calls + code check-ins",
       deliverable: "Reviews, decisions, drop-in fixes",
       scope: "1 company, 1 codebase",
-      from: "$2,400 / month",
+      from: "By need",
     },
     checksTitle: "What's included.",
     checks: [
@@ -438,7 +439,7 @@ const services: Service[] = [
             <header class="vr-service__head" data-reveal>
               <span class="vr-eyebrow">{s.eyebrow}</span>
               <h2 class="vr-h2 vr-service__title">{s.title}.</h2>
-              <p class="vr-lede vr-service__lede">{s.lede}</p>
+              <p class="vr-body vr-service__lede">{s.lede}</p>
             </header>
 
             <div class="vr-service__grid">
@@ -515,25 +516,7 @@ const services: Service[] = [
       ))
     }
 
-    <!-- ============ Bottom CTA ============ -->
-    <section class="vr-services__final vr-shell">
-      <div class="vr-services__final-inner" data-reveal>
-        <span class="vr-eyebrow">— Begin ⁄ §07</span>
-        <h2 class="vr-h2">
-          Start with a call.<br />
-          <em>Decide from there.</em>
-        </h2>
-        <p class="vr-body">
-          Walk me through what you've built. Thirty minutes is enough to tell
-          whether I'm the right person — and to leave you with a real answer
-          either way.
-        </p>
-        <a class="vr-cta" href="/book">
-          <span>Book a Call</span>
-          <span class="vr-cta__arrow">→</span>
-        </a>
-      </div>
-    </section>
+    <FinalCta section="§07" />
   </main>
 </Layout>
 
@@ -649,16 +632,6 @@ const services: Service[] = [
   .vr-service__title em { color: var(--vr-gold); font-style: italic; }
   .vr-service__lede { color: var(--vr-bone); }
 
-  .vr-lede {
-    font-family: var(--vr-serif);
-    font-size: var(--vr-step-2);
-    line-height: 1.35;
-    color: var(--vr-bone);
-    font-weight: 400;
-    text-wrap: pretty;
-    max-width: 32ch;
-  }
-
   .vr-service__grid {
     display: grid;
     grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
@@ -696,8 +669,8 @@ const services: Service[] = [
   }
   .vr-spec__list > div {
     display: grid;
-    grid-template-columns: 9ch 1fr;
-    gap: 0.75rem;
+    grid-template-columns: 12ch 1fr;
+    gap: 1rem;
     padding-bottom: 0.85rem;
     border-bottom: 1px dashed var(--vr-rule);
     align-items: baseline;
@@ -763,18 +736,18 @@ const services: Service[] = [
     .vr-checklist { grid-template-columns: 1fr; }
   }
   .vr-checklist li {
-    padding: 1.1rem 1rem 1.1rem 0;
+    padding: 1rem 1rem 1rem 1rem;
     border-bottom: 1px solid var(--vr-rule);
     display: grid;
     grid-template-columns: minmax(120px, 160px) 1fr;
-    gap: 0.75rem;
+    gap: .25rem;
     align-items: baseline;
   }
   @media (max-width: 700px) {
     .vr-checklist li {
       grid-template-columns: 1fr;
       gap: 0.4rem;
-      padding: 1rem 0;
+      padding: 1rem 0 1rem 1.25rem;
     }
   }
   .vr-checklist li:nth-child(odd) {
@@ -839,17 +812,6 @@ const services: Service[] = [
     max-width: 56ch;
   }
 
-  /* ===== Final ===== */
-  .vr-services__final { padding-block: clamp(3rem, 7vw, 6rem) clamp(4rem, 9vw, 8rem); }
-  .vr-services__final-inner {
-    display: grid;
-    gap: 1.5rem;
-    max-width: 36ch;
-  }
-  .vr-services__final-inner em {
-    color: var(--vr-gold);
-    font-style: italic;
-  }
 </style>
 
 <script>

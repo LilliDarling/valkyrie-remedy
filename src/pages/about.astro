@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FinalCta from "../components/FinalCta.astro";
 ---
 
 <Layout title="About">
@@ -8,24 +9,165 @@ import Layout from "../layouts/Layout.astro";
       <span class="vr-eyebrow">— About ⁄ §00</span>
       <div class="vr-about">
         <p class="vr-about__lede">
-          I'm an engineer. I read code for a living and I'm honest about what I
-          see. People started hiring me to come in after the AI got tired — to
-          look at the site, name the three things that were wrong, and quote a
-          number for fixing them. That turned out to be a job. I take it
-          seriously, I work alone, and I don't pretend to be anything other
-          than the person you call when something is actually broken. If the
-          site you built deserves to last, I can probably help. If it doesn't,
-          I'll tell you that too.
+          I've been the only engineer in the room for most of my career — the one who built the system, ran the operations, and answered the page at 2am when something broke. I've shipped payment distribution systems, cross-border operational infrastructure, and LLM integrations into live products with real users. When founders hand me an AI-generated codebase, I know what I'm looking at because I've built production systems around the same tools that generated it. A lot of engineers will tell you what's wrong. Some will just ask another AI and forward you the results in an afternoon. What I do is read it myself, think about it, and tell you what it will actually take — not what sounds right at a glance.
         </p>
-        <p class="vr-about__sign">— V.</p>
       </div>
     </div>
+
+    <div class="vr-stub__row" data-reveal style="--reveal-delay: 120ms">
+      <span class="vr-eyebrow vr-eyebrow--dim">— Practice ⁄ §01</span>
+      <div class="vr-about">
+        <h2 class="vr-about__h">
+          A one-person practice. <em>Deliberately small.</em>
+        </h2>
+        <p class="vr-body">
+          One person. No agency behind me, no offshore team, no account manager absorbing your question before it reaches someone who can answer it. The person who scopes the work writes the code and picks up when a deploy goes sideways. The calendar stays small so the work can move well.
+        </p>
+      </div>
+    </div>
+
+    <div class="vr-stub__row" data-reveal style="--reveal-delay: 220ms">
+      <span class="vr-eyebrow vr-eyebrow--dim">— Principles ⁄ §02</span>
+      <div class="vr-about">
+        <h2 class="vr-about__h">How the work goes.</h2>
+        <ol class="vr-about__list">
+          <li>
+            <span>i.</span>
+            <p>
+              <strong>Scope before code.</strong> Every engagement begins
+              with a written scope — what I'll touch, what I won't, what
+              success looks like in plain sentences. You sign before I open
+              an editor.
+            </p>
+          </li>
+          <li>
+            <span>ii.</span>
+            <p>
+              <strong>A written record.</strong> Findings live in your repo,
+              in PDFs, and in scheduled walkthroughs. Not in Slack threads
+              that disappear under the next message.
+            </p>
+          </li>
+          <li>
+            <span>iii.</span>
+            <p>
+              <strong
+                >The work gets what it needs or it doesn't get taken.</strong
+              > If there's no room to do it well, I'll tell you before
+              you're waiting.
+            </p>
+          </li>
+          <li>
+            <span>iv.</span>
+            <p>
+              <strong>The same name top to bottom.</strong> Same person on
+              the proposal, in the codebase, and on the call. No handoff
+              because there's no one to hand it to.
+            </p>
+          </li>
+          <li>
+            <span>v.</span>
+            <p>
+              <strong>Nothing I can't put my name on.</strong> If I can't
+              stand behind it when it's done, I won't start it.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="vr-stub__row" data-reveal style="--reveal-delay: 320ms">
+      <span class="vr-eyebrow vr-eyebrow--dim">— FAQ ⁄ §03</span>
+      <div class="vr-about">
+        <h2 class="vr-about__h">Common questions.</h2>
+        <div class="vr-faq">
+          <details class="vr-faq__item">
+            <summary>What kind of sites do you work on?</summary>
+            <div class="vr-faq__answer">
+              <p>
+                Web, mobile, full-stack — if it's built with code, I'll
+                read it. No stack prerequisites.
+              </p>
+            </div>
+          </details>
+
+          <details class="vr-faq__item">
+            <summary>Do you work with teams or just solo founders?</summary>
+            <div class="vr-faq__answer">
+              <p>Both. The engagement structure is the same either way.</p>
+            </div>
+          </details>
+
+          <details class="vr-faq__item">
+            <summary>How long does it take to get started?</summary>
+            <div class="vr-faq__answer">
+              <p>
+                Depends on the calendar. Book a call and we'll know in
+                thirty minutes.
+              </p>
+            </div>
+          </details>
+
+          <details class="vr-faq__item">
+            <summary>What if I just have a quick question?</summary>
+            <div class="vr-faq__answer">
+              <p>
+                The intro call is for that. Thirty minutes, paid, and
+                applied to the project if we move forward.
+              </p>
+            </div>
+          </details>
+
+          <details class="vr-faq__item">
+            <summary>Do you offer payment plans?</summary>
+            <div class="vr-faq__answer">
+              <p>
+                Yes. Larger engagements can be split — ask during the intro
+                call.
+              </p>
+            </div>
+          </details>
+
+          <details class="vr-faq__item">
+            <summary>What happens if something breaks after handoff?</summary>
+            <div class="vr-faq__answer">
+              <p>
+                Rebuilds include a 30-day warranty. Everything else is
+                scoped per engagement.
+              </p>
+            </div>
+          </details>
+
+          <details class="vr-faq__item">
+            <summary>Can you work with my existing developer?</summary>
+            <div class="vr-faq__answer">
+              <p>Yes. I work alongside teams regularly.</p>
+            </div>
+          </details>
+
+          <details class="vr-faq__item">
+            <summary>What if the scope changes mid-project?</summary>
+            <div class="vr-faq__answer">
+              <p>
+                We write a new scope. Nothing changes hands without both of
+                us agreeing to it in writing first.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="vr-stub__row vr-about__signrow" data-reveal style="--reveal-delay: 420ms">
+      <span class="vr-eyebrow vr-eyebrow--dim">— Sign-off</span>
+      <p class="vr-about__sign">— V.</p>
+    </div>
   </main>
+  <FinalCta section="§04" />
 </Layout>
 
 <style>
   .vr-stub {
-    min-height: 70vh;
     display: grid;
     align-content: start;
     gap: 1.5rem;
@@ -43,21 +185,23 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .vr-about {
-    max-width: 60ch;
+    max-width: 98ch;
     display: grid;
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+  .vr-about .vr-body {
+    max-width: none;
   }
 
   .vr-about__lede {
-    font-family: var(--vr-serif);
-    font-size: var(--vr-step-2);
-    line-height: 1.45;
+    font-family: var(--vr-serif-body);
+    font-size: var(--vr-step-1);
+    line-height: 1.6;
     color: var(--vr-bone);
     text-wrap: pretty;
     margin: 0;
     font-weight: 400;
   }
-
   .vr-about__lede::first-letter {
     font-size: 3em;
     float: left;
@@ -68,8 +212,122 @@ import Layout from "../layouts/Layout.astro";
     font-weight: 500;
   }
 
-  .vr-about__sign {
+  .vr-about__h {
     margin: 0;
+    font-family: var(--vr-serif);
+    font-weight: 500;
+    font-size: var(--vr-step-2);
+    line-height: 1.2;
+    color: var(--vr-bone);
+    text-wrap: pretty;
+  }
+  .vr-about__h em {
+    color: var(--vr-gold);
+    font-style: italic;
+  }
+
+  .vr-about__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0;
+  }
+  .vr-about__list li {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px dashed var(--vr-rule);
+    align-items: baseline;
+  }
+  .vr-about__list li:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .vr-about__list li:last-child {
+    padding-bottom: 0;
+  }
+  .vr-about__list > li > span {
+    font-family: var(--vr-serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: var(--vr-step-1);
+    color: var(--vr-gold);
+    line-height: 1;
+  }
+  .vr-about__list p {
+    margin: 0;
+    color: var(--vr-bone-dim);
+    font-family: var(--vr-serif-body);
+    line-height: 1.65;
+    font-size: var(--vr-step-1);
+  }
+  .vr-about__list p strong {
+    font-weight: 500;
+    color: var(--vr-bone);
+  }
+
+  .vr-faq {
+    display: grid;
+    gap: 0;
+  }
+  .vr-faq__item {
+    border-top: 1px dashed var(--vr-rule);
+    padding: 1rem 0;
+  }
+  .vr-faq__item:first-child {
+    border-top: 0;
+    padding-top: 0.25rem;
+  }
+  .vr-faq__item:last-child {
+    padding-bottom: 0;
+  }
+  .vr-faq__item > summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: baseline;
+    font-family: var(--vr-serif);
+    font-weight: 500;
+    font-size: var(--vr-step-1);
+    color: var(--vr-bone);
+    line-height: 1.3;
+    transition: color 220ms var(--vr-ease);
+  }
+  .vr-faq__item > summary::-webkit-details-marker {
+    display: none;
+  }
+  .vr-faq__item > summary::after {
+    content: "+";
+    font-family: var(--vr-mono);
+    font-size: var(--vr-step-1);
+    font-weight: 400;
+    color: var(--vr-gold);
+    line-height: 1;
+  }
+  .vr-faq__item[open] > summary::after {
+    content: "−";
+  }
+  .vr-faq__item > summary:hover {
+    color: var(--vr-gold);
+  }
+  .vr-faq__answer {
+    padding-top: 0.75rem;
+    max-width: 78ch;
+  }
+  .vr-faq__answer p {
+    margin: 0;
+    color: var(--vr-bone-dim);
+    font-family: var(--vr-serif-body);
+    line-height: 1.65;
+    font-size: var(--vr-step-1);
+  }
+
+  .vr-about__sign {
+    margin: 1rem 0 0;
     font-family: var(--vr-serif);
     font-style: italic;
     font-size: var(--vr-step-2);

@@ -22,13 +22,13 @@
   --color-gold-dim: var(--color-iron-dim);
   --color-gold-warm: var(--color-iron-warm);
 
-  --font-serif: "Cormorant Garamond", "EB Garamond", "Times New Roman", serif;
-  --font-serif-body: "EB Garamond", "Cormorant Garamond", "Times New Roman", serif;
+  --font-serif: "Cormorant Garamond", "Source Serif 4", "Times New Roman", serif;
+  --font-serif-body: "Source Serif 4", "Charter", "Georgia", "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   --text-step--1: clamp(0.78rem, 0.74rem + 0.20vw, 0.86rem);
-  --text-step-0:  clamp(0.95rem, 0.90rem + 0.30vw, 1.06rem);
-  --text-step-1:  clamp(1.05rem, 0.96rem + 0.45vw, 1.30rem);
+  --text-step-0:  clamp(0.88rem, 0.84rem + 0.25vw, 0.98rem);
+  --text-step-1:  clamp(0.95rem, 0.86rem + 0.40vw, 1.15rem);
   --text-step-2:  clamp(1.25rem, 1.05rem + 1.00vw, 1.75rem);
   --text-step-3:  clamp(1.65rem, 1.05rem + 3.00vw, 3.10rem);
   --text-step-4:  clamp(2.10rem, 0.96rem + 5.50vw, 5.20rem);
@@ -114,6 +114,44 @@
   ::selection { background: var(--vr-gold); color: var(--vr-ink); }
   :focus-visible { outline: 1px solid var(--vr-gold); outline-offset: 3px; }
 
+  /* Custom scrollbar — sharp, iron-toned, floating in an ink rail. */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--vr-iron-dim) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--vr-ink);
+    border-left: 1px solid var(--vr-rule);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      to bottom,
+      var(--vr-iron) 0%,
+      var(--vr-iron-dim) 100%
+    );
+    border: 3px solid var(--vr-ink);
+    border-radius: 0;
+    transition: background 220ms var(--vr-ease);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      to bottom,
+      var(--vr-iron-warm) 0%,
+      var(--vr-iron) 100%
+    );
+    border-color: var(--vr-ink-2);
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--vr-iron-warm);
+  }
+  ::-webkit-scrollbar-corner {
+    background: var(--vr-ink);
+  }
+
   h1, h2, h3 {
     font-family: var(--vr-serif);
     font-weight: 500;
@@ -142,6 +180,14 @@ body::before {
 
 @media (hover: none), (prefers-reduced-motion: reduce) {
   body::before { display: none; }
+}
+
+/* Pages that embed third-party flows (Cal.com / Stripe) opt out of the
+   atmospheric overlays — mix-blend-mode in the parent paints visually over
+   the iframe and distorts payment surfaces. */
+body.vr-page-book::before,
+body.vr-page-book::after {
+  display: none;
 }
 
 /* ---------- Atmosphere: animated film grain ---------- */

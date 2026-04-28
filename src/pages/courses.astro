@@ -1,21 +1,66 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const outline: { num: string; title: string; body: string }[] = [
+const outline: {
+  num: string;
+  title: string;
+  body: string;
+  bullets: string[];
+}[] = [
   {
-    num: "i.",
-    title: "Reading what the AI gave you",
+    num: "§01",
+    title: "Reading What the AI Gave You",
     body: "The discipline of not trusting your own demo.",
+    bullets: [
+      "What your file structure is actually telling you",
+      "How to read a component without knowing how to write one",
+      "Finding the seams — where one thing ends and another begins",
+      "The three questions to ask before touching anything",
+    ],
   },
   {
-    num: "ii.",
-    title: "Replacing without breaking",
-    body: "Practical patterns for swapping foundations under live sites.",
+    num: "§02",
+    title: "Trusting Nothing, Breaking Nothing",
+    body: "How to verify before you change.",
+    bullets: [
+      "Why your demo works and your production site doesn't",
+      "Reading error messages like a thread, not a wall",
+      "Making one change at a time (and why AI doesn't)",
+      "When to Google, when to ask AI, when to stop",
+    ],
   },
   {
-    num: "iii.",
-    title: "Quiet security for solo founders",
-    body: "The ten things that catch ninety percent of the danger.",
+    num: "§03",
+    title: "The Ten Things That Catch Ninety Percent of the Danger",
+    body: "Quiet security for solo founders.",
+    bullets: [
+      "What an exposed API key actually means",
+      "Where secrets live and where they should never live",
+      "Headers you've never heard of that matter a lot",
+      "The one thing to check before you take a payment",
+    ],
+  },
+  {
+    num: "§04",
+    title: "Your Repo Is a Document",
+    body: "How to make it one you can read in six months.",
+    bullets: [
+      "What a README is actually for",
+      "Naming things so future-you isn't furious",
+      "What to delete, what to leave, what to never touch",
+      "Leaving a breadcrumb trail through your own decisions",
+    ],
+  },
+  {
+    num: "§05",
+    title: "Knowing When to Call Someone",
+    body: "The honest module.",
+    bullets: [
+      "What you can maintain yourself vs. what will eventually need a real engineer",
+      "How to talk to a developer without getting taken advantage of",
+      "What a code review actually costs and what it gives you",
+      "Red flags in AI-generated code worth paying someone to look at",
+    ],
   },
 ];
 ---
@@ -43,7 +88,12 @@ const outline: { num: string; title: string; body: string }[] = [
 
     <div class="vr-stub__row" data-reveal style="--reveal-delay: 160ms">
       <span class="vr-eyebrow vr-eyebrow--dim">— Waitlist</span>
-      <form class="vr-waitlist" id="waitlistForm" novalidate>
+      <form
+        class="vr-waitlist"
+        id="waitlistForm"
+        data-source="course"
+        novalidate
+      >
         <label class="vr-meta" for="email">Email · for early access only</label>
         <div class="vr-field">
           <input
@@ -73,6 +123,11 @@ const outline: { num: string; title: string; body: string }[] = [
               <div>
                 <h3>{o.title}</h3>
                 <p>{o.body}</p>
+                <ul class="vr-outline__bullets">
+                  {o.bullets.map((b) => (
+                    <li>{b}</li>
+                  ))}
+                </ul>
               </div>
             </li>
           ))
@@ -149,6 +204,7 @@ const outline: { num: string; title: string; body: string }[] = [
     outline: none;
   }
   .vr-field input::placeholder { color: var(--vr-bone-faint); }
+  .vr-field input:disabled { color: var(--vr-bone-faint); }
   .vr-field button {
     flex-shrink: 0;
     border: 0;
@@ -166,6 +222,8 @@ const outline: { num: string; title: string; body: string }[] = [
       color 220ms var(--vr-ease);
   }
   .vr-field button:hover { background: var(--vr-gold); color: var(--vr-ink); }
+  .vr-field button:disabled { opacity: 0.6; cursor: default; }
+  .vr-field button:disabled:hover { background: transparent; color: var(--vr-gold); }
 
   .vr-outline {
     list-style: none;
@@ -174,21 +232,21 @@ const outline: { num: string; title: string; body: string }[] = [
     display: grid;
     gap: 1.25rem;
   }
-  .vr-outline li {
+  .vr-outline > li {
     display: grid;
-    grid-template-columns: 48px 1fr;
+    grid-template-columns: 56px 1fr;
     gap: clamp(0.75rem, 2vw, 1.25rem);
-    padding: 1.2rem 0;
+    padding: 1.5rem 0;
     border-bottom: 1px dashed var(--vr-rule);
   }
-  .vr-outline li:last-child { border-bottom: 0; }
-  .vr-outline span {
-    font-family: var(--vr-serif);
-    font-style: italic;
+  .vr-outline > li:last-child { border-bottom: 0; }
+  .vr-outline > li > span {
+    font-family: var(--vr-mono);
     font-weight: 500;
-    font-size: var(--vr-step-2);
+    font-size: var(--vr-step-0);
+    letter-spacing: 0.08em;
     color: var(--vr-gold);
-    line-height: 1;
+    line-height: 1.4;
   }
   .vr-outline h3 {
     margin: 0 0 0.4rem;
@@ -196,11 +254,32 @@ const outline: { num: string; title: string; body: string }[] = [
     font-weight: 500;
     font-size: var(--vr-step-1);
   }
-  .vr-outline p {
-    margin: 0;
-    color: var(--vr-bone-dim);
+  .vr-outline > li > div > p {
+    margin: 0 0 1rem;
+    color: var(--vr-bone);
     font-size: var(--vr-step-0);
     max-width: 56ch;
+  }
+  .vr-outline__bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+    max-width: 60ch;
+  }
+  .vr-outline__bullets li {
+    position: relative;
+    padding-left: 1.25rem;
+    color: var(--vr-bone-dim);
+    font-size: var(--vr-step-0);
+    line-height: 1.5;
+  }
+  .vr-outline__bullets li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--vr-bone-faint);
   }
 </style>
 
@@ -209,10 +288,10 @@ const outline: { num: string; title: string; body: string }[] = [
   const hint = document.getElementById("waitlistHint") as HTMLElement | null;
 
   if (form && hint) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const input = form.querySelector<HTMLInputElement>('input[type="email"]');
-      const button = form.querySelector<HTMLButtonElement>("button");
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
       if (!input || !button) return;
 
       const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
@@ -223,12 +302,39 @@ const outline: { num: string; title: string; body: string }[] = [
         return;
       }
 
-      form.classList.add("is-success");
-      form.classList.remove("is-error");
+      button.disabled = true;
       input.disabled = true;
-      button.textContent = "✓ In";
-      hint.textContent =
-        "On the list. I'll write once, when the doors open.";
+      hint.textContent = "Sending…";
+      form.classList.remove("is-error");
+
+      try {
+        const res = await fetch("/api/waitlist", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            email: input.value.trim(),
+            source: form.dataset.source,
+          }),
+        });
+        const data = (await res.json().catch(() => ({}))) as {
+          error?: string;
+        };
+        if (!res.ok) {
+          throw new Error(data.error || "Subscription failed");
+        }
+        form.classList.add("is-success");
+        button.textContent = "✓ In";
+        hint.textContent =
+          "On the list. I'll write once, when the doors open.";
+      } catch (err) {
+        form.classList.add("is-error");
+        button.disabled = false;
+        input.disabled = false;
+        hint.textContent =
+          err instanceof Error && err.message
+            ? err.message
+            : "Something blocked the signup. Try again, or email hello@valkyrieremedy.com.";
+      }
     });
   }
 </script>

@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FinalCta from "../components/FinalCta.astro";
 
 const capabilities: {
   num: string;
@@ -213,31 +214,7 @@ const steps: { num: string; title: string; body: string }[] = [
   </section>
 
   <!-- ============ FINAL CTA ============ -->
-  <section class="vr-final vr-shell">
-    <div class="vr-final__inner" data-reveal>
-      <div class="vr-final__head">
-        <span class="vr-eyebrow">— Begin ⁄ §04</span>
-        <h2 class="vr-h2 vr-final__h">
-          Start with a call.<br />
-          <em>Decide from there.</em>
-        </h2>
-      </div>
-      <div class="vr-final__body">
-        <p class="vr-body vr-final__p">
-          Walk me through what you've built. Thirty minutes is enough to
-          tell whether I'm the right person — and to leave you with a real
-          answer either way.
-        </p>
-        <a class="vr-cta" href="/book">
-          <span>Book a Call</span>
-          <span class="vr-cta__arrow">→</span>
-        </a>
-        <p class="vr-meta vr-final__meta">
-          $50 deposit · Credited toward any engagement
-        </p>
-      </div>
-    </div>
-  </section>
+  <FinalCta section="§04" />
 </Layout>
 
 <style>
@@ -541,39 +518,6 @@ const steps: { num: string; title: string; body: string }[] = [
     color: var(--vr-iron-warm, var(--vr-gold));
     transform: translateX(-2px);
   }
-
-  /* ===== Final ===== */
-  .vr-final { padding-block: clamp(4rem, 8vw, 6rem) 8rem; }
-  .vr-final__inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(2.5rem, 6vw, 5rem);
-    border-top: 1px solid var(--vr-rule);
-    padding-top: clamp(3rem, 6vw, 5rem);
-  }
-  @media (max-width: 800px) {
-    .vr-final__inner { grid-template-columns: 1fr; }
-  }
-  .vr-final__head {
-    display: grid;
-    gap: 1.2rem;
-    align-content: start;
-  }
-  .vr-final__body {
-    display: grid;
-    gap: 1.5rem;
-    align-content: start;
-    justify-items: start;
-    max-width: 60ch;
-    padding-top: clamp(1rem, 2vw, 2rem);
-  }
-  @media (max-width: 800px) {
-    .vr-final__body { padding-top: 0; }
-  }
-  .vr-final__h { margin: 0; }
-  .vr-final__h em { color: var(--vr-gold); font-style: italic; }
-  .vr-final__p { margin: 0; }
-  .vr-final__meta { color: var(--vr-bone-faint); margin: 0; }
 
   .vr-row {
     display: flex;
