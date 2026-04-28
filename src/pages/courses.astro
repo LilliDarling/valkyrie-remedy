@@ -88,7 +88,7 @@ const outline: { num: string; title: string; body: string }[] = [
     display: grid;
     align-content: start;
     gap: 1.5rem;
-    padding: 4rem 0 6rem;
+    padding-block: 4rem 6rem;
   }
   .vr-stub__row {
     display: grid;
@@ -176,8 +176,8 @@ const outline: { num: string; title: string; body: string }[] = [
   }
   .vr-outline li {
     display: grid;
-    grid-template-columns: 60px 1fr;
-    gap: 1.25rem;
+    grid-template-columns: 48px 1fr;
+    gap: clamp(0.75rem, 2vw, 1.25rem);
     padding: 1.2rem 0;
     border-bottom: 1px dashed var(--vr-rule);
   }

@@ -29,12 +29,12 @@ const services: Service[] = [
     title: "Code review",
     short: "Review",
     eyebrow: "— 01 ⁄ Review",
-    lede: "A close, written read of what you shipped. I tell you what's broken, what's a ticking clock, and what's actually fine even though the AI told you it wasn't.",
+    lede: "A close read of what you've built — what holds, what strains, what won't survive a real user. Written, traceable, and triaged.",
     spec: {
       duration: "3–5 days",
-      format: "Async + 1 walkthrough",
-      deliverable: "Written report (PDF + repo annotations)",
-      scope: "Up to 1 codebase, 1 repo",
+      format: "Written report + walkthrough",
+      deliverable: "PDF report + repo annotations",
+      scope: "1 codebase, 1 repo",
       from: "$650",
     },
     checksTitle: "What gets read.",
@@ -71,76 +71,16 @@ const services: Service[] = [
     fit: "You shipped a site with Cursor, Lovable, v0, or Claude. It works in the demo. You're now afraid of three things at once and would like to know which fear to honor.",
   },
   {
-    id: "site-rebuild",
-    num: "02",
-    title: "Site rebuild",
-    short: "Rebuild",
-    eyebrow: "— 02 ⁄ Rebuild",
-    lede: "Same intent. New foundation. I keep what was right about your AI draft and replace the rest with code that won't surprise you in six months.",
-    spec: {
-      duration: "2–4 weeks",
-      format: "Private channel, daily notes",
-      deliverable: "Astro site, deployed, documented",
-      scope: "Up to 12 page templates",
-      from: "$3,200",
-    },
-    checksTitle: "What gets replaced.",
-    checks: [
-      { k: "Foundation", v: "Astro, content collections, typed routes." },
-      {
-        k: "Component library",
-        v: "One small, owned set. No framework salad.",
-      },
-      {
-        k: "Forms & integrations",
-        v: "Real validation, real error states, real receipts.",
-      },
-      {
-        k: "Content model",
-        v: "Editable by you, no developer required.",
-      },
-      {
-        k: "Deploy pipeline",
-        v: "Preview branches, atomic deploys, rollbacks.",
-      },
-      { k: "Documentation", v: "One README. Boring on purpose." },
-    ],
-    protocol: [
-      {
-        num: "i.",
-        title: "Scope",
-        body: "We agree on a fixed scope. I write the proposal. You sign before I open an editor.",
-      },
-      {
-        num: "ii.",
-        title: "Foundation week",
-        body: "Repo, design tokens, two reference templates. You see the spine in five days.",
-      },
-      {
-        num: "iii.",
-        title: "Build",
-        body: "Templates, content, integrations. Daily written notes. Weekly preview links.",
-      },
-      {
-        num: "iv.",
-        title: "Handoff",
-        body: "Deploy, walkthrough session, 30-day warranty on anything I built. After that, we're done.",
-      },
-    ],
-    fit: "You're spending more time fighting the AI prompt than running your business. Or someone respectable is about to look at your repo and you'd like that to be uneventful.",
-    alt: true,
-  },
-  {
     id: "security-audit",
-    num: "03",
+    num: "02",
     title: "Security audit",
     short: "Audit",
-    eyebrow: "— 03 ⁄ Audit",
-    lede: "Quietly tested for the things AI assistants forget. Keys, headers, payloads, the back door behind the polite front door.",
+    eyebrow: "— 02 ⁄ Audit",
+    lede: "A quiet sweep for what AI assistants forget — keys, headers, payloads, the back door behind the polite front door.",
     spec: {
       duration: "5–7 days",
-      format: "Async + signed report",
-      deliverable: "Findings + remediation plan",
+      format: "Findings + remediation plan",
+      deliverable: "Signed report + fix order",
       scope: "1 site, 1 backend, 1 vendor surface",
       from: "$1,400",
     },
@@ -194,25 +134,282 @@ const services: Service[] = [
       },
     ],
     fit: "You're about to take payments, take data, or take fundraising — and you don't know what's leaking from the side of the building you can't see.",
+    alt: true,
+  },
+  {
+    id: "rebuild",
+    num: "03",
+    title: "Rebuild",
+    short: "Rebuild",
+    eyebrow: "— 03 ⁄ Rebuild",
+    lede: "Same intent, real foundation. The right parts of your AI draft stay; the rest gets replaced with code that's documented, tested, and built to last.",
+    spec: {
+      duration: "2–4 weeks",
+      format: "Scoped delivery, deployed + documented",
+      deliverable: "Production site, repo, runbook",
+      scope: "Up to 12 page templates",
+      from: "$3,200",
+    },
+    checksTitle: "What gets replaced.",
+    checks: [
+      { k: "Foundation", v: "Astro, content collections, typed routes." },
+      {
+        k: "Component library",
+        v: "One small, owned set. No framework salad.",
+      },
+      {
+        k: "Forms & integrations",
+        v: "Real validation, real error states, real receipts.",
+      },
+      {
+        k: "Content model",
+        v: "Editable by you, no developer required.",
+      },
+      {
+        k: "Deploy pipeline",
+        v: "Preview branches, atomic deploys, rollbacks.",
+      },
+      { k: "Documentation", v: "One README. Boring on purpose." },
+    ],
+    protocol: [
+      {
+        num: "i.",
+        title: "Scope",
+        body: "We agree on a fixed scope. I write the proposal. You sign before I open an editor.",
+      },
+      {
+        num: "ii.",
+        title: "Foundation week",
+        body: "Repo, design tokens, two reference templates. You see the spine in five days.",
+      },
+      {
+        num: "iii.",
+        title: "Build",
+        body: "Templates, content, integrations. Daily written notes. Weekly preview links.",
+      },
+      {
+        num: "iv.",
+        title: "Handoff",
+        body: "Deploy, walkthrough session, 30-day warranty on anything I built. After that, we're done.",
+      },
+    ],
+    fit: "You're spending more time fighting the AI prompt than running your business. Or someone respectable is about to look at your repo and you'd like that to be uneventful.",
+  },
+  {
+    id: "scaling",
+    num: "04",
+    title: "Scaling",
+    short: "Scaling",
+    eyebrow: "— 04 ⁄ Scaling",
+    lede: "When traffic, load, or surface area outgrows what got it shipped. Real architecture, before the next inflection point — not after the page is on fire.",
+    spec: {
+      duration: "By project",
+      format: "Assessment + implementation sprints",
+      deliverable: "Architecture brief + scoped buildout",
+      scope: "1 application surface",
+      from: "By project",
+    },
+    checksTitle: "What gets re-architected.",
+    checks: [
+      {
+        k: "Bottlenecks",
+        v: "Where the system pinches under real load — DB, queues, cold paths.",
+      },
+      {
+        k: "State",
+        v: "Caching, sessions, idempotency. The data you're quietly stale on.",
+      },
+      {
+        k: "Boundaries",
+        v: "Service seams, queue topology, what can be made async without regret.",
+      },
+      {
+        k: "Observability",
+        v: "Logs, traces, alerts that fire before the customer sends the email.",
+      },
+      {
+        k: "Capacity",
+        v: "Headroom, autoscaling, cost ceilings, the next 10×.",
+      },
+      {
+        k: "Failure modes",
+        v: "What breaks under partial outage — and how it recovers.",
+      },
+    ],
+    protocol: [
+      {
+        num: "i.",
+        title: "Assessment",
+        body: "Two weeks reading the system under real conditions. Load profiles, traces, the parts you've been afraid to touch.",
+      },
+      {
+        num: "ii.",
+        title: "Brief",
+        body: "A written architecture document. Where to invest, what to leave alone, in what order.",
+      },
+      {
+        num: "iii.",
+        title: "Sprints",
+        body: "Implementation in scoped two-week blocks. Each one ships and gets reviewed before the next is signed.",
+      },
+      {
+        num: "iv.",
+        title: "Handoff",
+        body: "Runbooks, dashboards, and one engineer on your side who knows where the seams are.",
+      },
+    ],
+    fit: "You're past the demo. Real users, real volume, and the parts that worked at 100 are starting to fray at 10,000. You'd like the next inflection to be quiet.",
+  },
+  {
+    id: "coaching",
+    num: "05",
+    title: "Coaching",
+    short: "Coaching",
+    eyebrow: "— 05 ⁄ Coaching",
+    lede: "Working sessions for founders learning to ship the next version themselves — shoulder to shoulder, in your codebase. Not a course. Your code, your decisions, my eyes on it with you.",
+    spec: {
+      duration: "By engagement",
+      format: "Live working sessions",
+      deliverable: "Pair-programmed progress + recordings",
+      scope: "1 founder, 1 codebase",
+      from: "$400 / session",
+    },
+    checksTitle: "What we work on.",
+    checks: [
+      {
+        k: "Reading code",
+        v: "How to know what the AI gave you actually does.",
+      },
+      {
+        k: "Decisions",
+        v: "When to refactor, when to leave it, when to throw it out.",
+      },
+      {
+        k: "Debugging",
+        v: "Following the thread without panicking or rewriting.",
+      },
+      {
+        k: "Shipping",
+        v: "Cutting scope, choosing the smaller win, getting it out.",
+      },
+      {
+        k: "Tooling",
+        v: "The five things that make the difference. The fifty that don't.",
+      },
+      {
+        k: "Habits",
+        v: "Reading before writing. Writing before generating.",
+      },
+    ],
+    protocol: [
+      {
+        num: "i.",
+        title: "Intake",
+        body: "Thirty minutes on what you're trying to ship and what's been getting in the way.",
+      },
+      {
+        num: "ii.",
+        title: "Sessions",
+        body: "Ninety minutes, weekly or bi-weekly. We open your code and work the real problem.",
+      },
+      {
+        num: "iii.",
+        title: "Async",
+        body: "I read what you wrote between sessions. Notes back, questions answered, no waiting.",
+      },
+      {
+        num: "iv.",
+        title: "Wrap",
+        body: "When you no longer need me. The point is not the relationship — it's you not needing it.",
+      },
+    ],
+    fit: "You shipped one version and you're trying to ship the next one without a team. You don't want a tutorial. You want someone in the seat next to you while you make the calls.",
+    alt: true,
+  },
+  {
+    id: "retainer",
+    num: "06",
+    title: "Retainer",
+    short: "Retainer",
+    eyebrow: "— 06 ⁄ Retainer",
+    lede: "Ongoing counsel and capacity, by the month. Senior expertise always within reach for what you're shipping next — without the cost or commitment of a hire.",
+    spec: {
+      duration: "Monthly",
+      format: "Async review + quick calls + code check-ins",
+      deliverable: "Reviews, decisions, drop-in fixes",
+      scope: "1 company, 1 codebase",
+      from: "$2,400 / month",
+    },
+    checksTitle: "What's included.",
+    checks: [
+      {
+        k: "Reviews",
+        v: "Pull-request reads on anything that warrants a second pair of eyes.",
+      },
+      {
+        k: "Calls",
+        v: "Two thirty-minute calls a month. More if it's the kind of week that needs them.",
+      },
+      {
+        k: "Decisions",
+        v: "When you're stuck on a fork in the road, you have someone to ask.",
+      },
+      {
+        k: "Small fixes",
+        v: "Drop-in capacity for things that should take a senior an afternoon.",
+      },
+      {
+        k: "Architecture",
+        v: "Light touch, ongoing. The thing you wish you'd talked to a CTO about.",
+      },
+      {
+        k: "Continuity",
+        v: "Same person every month. No re-onboarding.",
+      },
+    ],
+    protocol: [
+      {
+        num: "i.",
+        title: "Onboarding",
+        body: "One week. I read your repo, your roadmap, and meet whoever else is in the building.",
+      },
+      {
+        num: "ii.",
+        title: "Cadence",
+        body: "Shared channel, two calls a month, async reviews on what you push.",
+      },
+      {
+        num: "iii.",
+        title: "Capacity",
+        body: "Up to one engineering day a week of hands-on work. The rest is read, advise, decide.",
+      },
+      {
+        num: "iv.",
+        title: "Off-ramp",
+        body: "Thirty days notice either way. No claws, no clauses.",
+      },
+    ],
+    fit: "You don't need a CTO yet — but you need a senior in the room when the question comes up. You'd like a quiet, predictable line to one.",
   },
 ];
 ---
 
 <Layout
   title="Services"
-  description="Code review, site rebuild, and security audit. Three engagements — scoped, fixed-price, finite."
+  description="Code review, security audits, rebuilds, scaling, retainers, coaching — direct work for founders and creators who want what they're building made permanent."
 >
   <main class="vr-services">
     <!-- ============ Page header ============ -->
     <section class="vr-services__head vr-shell" data-reveal>
       <span class="vr-eyebrow">— Services ⁄ §00</span>
       <h1 class="vr-h2 vr-services__title">
-        Three things.<br />
-        <em>Each one does exactly what it says.</em>
+        From first review<br />
+        to ongoing <em>retainer.</em>
       </h1>
       <p class="vr-body vr-services__lede">
-        Engagements are scoped, fixed-price, and finite. I work alone. I don't
-        sell retainers, audits-as-subscription, or coaching disguised as code.
+        Engagements run the arc — from a single close read of what you've built
+        to ongoing counsel that grows with what you're shipping. Scope is set
+        in writing before any work begins.
       </p>
     </section>
 
@@ -224,7 +421,6 @@ const services: Service[] = [
             <a class="vr-tab" href={`#${s.id}`} data-tab={s.id}>
               <span class="vr-tab__num">{s.num}</span>
               <span class="vr-tab__name">{s.title}</span>
-              <span class="vr-tab__sub">From {s.spec.from}</span>
             </a>
           ))
         }
@@ -322,14 +518,15 @@ const services: Service[] = [
     <!-- ============ Bottom CTA ============ -->
     <section class="vr-services__final vr-shell">
       <div class="vr-services__final-inner" data-reveal>
-        <span class="vr-eyebrow">— What now</span>
+        <span class="vr-eyebrow">— Begin ⁄ §07</span>
         <h2 class="vr-h2">
-          Not sure which one?<br />
-          <em>That's what the call is for.</em>
+          Start with a call.<br />
+          <em>Decide from there.</em>
         </h2>
         <p class="vr-body">
-          Thirty minutes. I look at the site with you, name what I see, and
-          tell you which of the three (or none) is honest.
+          Walk me through what you've built. Thirty minutes is enough to tell
+          whether I'm the right person — and to leave you with a real answer
+          either way.
         </p>
         <a class="vr-cta" href="/book">
           <span>Book a Call</span>
@@ -343,7 +540,7 @@ const services: Service[] = [
 <style>
   /* ===== Page header ===== */
   .vr-services__head {
-    padding: 3rem 0 4rem;
+    padding-block: clamp(2rem, 5vw, 3rem) clamp(2.5rem, 6vw, 4rem);
     display: grid;
     gap: 1.5rem;
     border-bottom: 1px solid var(--vr-rule);
@@ -367,16 +564,20 @@ const services: Service[] = [
     border-bottom: 1px solid var(--vr-rule);
   }
   .vr-tabs__inner {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
     gap: 0;
   }
+  .vr-tabs__inner::-webkit-scrollbar { display: none; }
   .vr-tab {
-    padding: 1.1rem 0;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 1.1rem clamp(0.75rem, 1.5vw, 1.25rem);
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
     align-items: baseline;
-    gap: 0.75rem;
+    gap: 0.6rem;
     border-right: 1px solid var(--vr-rule);
     transition:
       background 240ms var(--vr-ease),
@@ -385,6 +586,12 @@ const services: Service[] = [
     color: var(--vr-bone-dim);
   }
   .vr-tab:last-child { border-right: 0; }
+  @media (max-width: 720px) {
+    .vr-tab {
+      flex: 0 0 auto;
+      min-width: max-content;
+    }
+  }
   .vr-tab::after {
     content: "";
     position: absolute;
@@ -406,7 +613,6 @@ const services: Service[] = [
     color: var(--vr-gold);
     font-size: 0.78rem;
     letter-spacing: 0.18em;
-    padding-left: clamp(0.5rem, 2vw, 1.25rem);
   }
   .vr-tab__name {
     font-family: var(--vr-serif);
@@ -414,23 +620,14 @@ const services: Service[] = [
     font-weight: 500;
     font-size: var(--vr-step-1);
     letter-spacing: -0.005em;
-  }
-  .vr-tab__sub {
-    font-family: var(--vr-mono);
-    font-size: 0.72rem;
-    color: var(--vr-bone-faint);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding-right: clamp(0.5rem, 2vw, 1.25rem);
-  }
-  @media (max-width: 720px) {
-    .vr-tab__sub { display: none; }
-    .vr-tab { grid-template-columns: auto 1fr; }
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   /* ===== Service article ===== */
   .vr-service {
-    padding: 5rem 0;
+    padding: clamp(2.5rem, 6vw, 5rem) 0;
     border-bottom: 1px solid var(--vr-rule);
     scroll-margin-top: 90px;
   }
@@ -447,7 +644,7 @@ const services: Service[] = [
     display: grid;
     gap: 1.25rem;
     max-width: 60ch;
-    margin-bottom: 4rem;
+    margin-bottom: clamp(2rem, 5vw, 4rem);
   }
   .vr-service__title em { color: var(--vr-gold); font-style: italic; }
   .vr-service__lede { color: var(--vr-bone); }
@@ -478,6 +675,9 @@ const services: Service[] = [
     background: var(--vr-ink-2);
     position: sticky;
     top: 110px;
+  }
+  @media (max-width: 900px) {
+    .vr-spec { position: static; }
   }
   .vr-spec__head {
     padding: 0.75rem 1rem;
@@ -570,6 +770,13 @@ const services: Service[] = [
     gap: 0.75rem;
     align-items: baseline;
   }
+  @media (max-width: 700px) {
+    .vr-checklist li {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+      padding: 1rem 0;
+    }
+  }
   .vr-checklist li:nth-child(odd) {
     border-right: 1px solid var(--vr-rule);
     padding-right: 1.5rem;
@@ -604,8 +811,8 @@ const services: Service[] = [
   }
   .vr-protocol li {
     display: grid;
-    grid-template-columns: 60px 1fr;
-    gap: 1.25rem;
+    grid-template-columns: 48px 1fr;
+    gap: clamp(0.75rem, 2.5vw, 1.25rem);
     padding: 1.2rem 0;
     border-bottom: 1px dashed var(--vr-rule);
   }
@@ -633,7 +840,7 @@ const services: Service[] = [
   }
 
   /* ===== Final ===== */
-  .vr-services__final { padding: 6rem 0 8rem; }
+  .vr-services__final { padding-block: clamp(3rem, 7vw, 6rem) clamp(4rem, 9vw, 8rem); }
   .vr-services__final-inner {
     display: grid;
     gap: 1.5rem;
@@ -647,7 +854,14 @@ const services: Service[] = [
 
 <script>
   // Sticky-tab active state, driven by which section is in view
-  const ids = ["code-review", "site-rebuild", "security-audit"];
+  const ids = [
+    "code-review",
+    "security-audit",
+    "rebuild",
+    "scaling",
+    "coaching",
+    "retainer",
+  ];
   const sections = ids
     .map((id) => document.getElementById(id))
     .filter((el): el is HTMLElement => el !== null);

@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const CAL_URL = "https://cal.com/valkyrie-remedy/intro";
+const CAL_LINK = "valkyrie-remedy/intro";
+const CAL_URL = `https://cal.com/${CAL_LINK}`;
 ---
 
 <Layout title="Book a Call">
@@ -11,13 +12,13 @@ const CAL_URL = "https://cal.com/valkyrie-remedy/intro";
       <div class="vr-stack-3">
         <h1 class="vr-h2">
           Thirty minutes.<br />
-          <em>Paid, on purpose.</em>
+          <em>Decide from there.</em>
         </h1>
         <p class="vr-body">
-          A small deposit filters the work down to people who actually want to
-          do it. Bring your repo, your URL, and your worst-case fear. I'll tell
-          you whether I'm the right person, and what to do either way. The fee
-          is credited in full toward any engagement we agree to.
+          Walk me through what you've built. Thirty minutes is enough to tell
+          whether I'm the right person — and to leave you with a real answer
+          either way. The deposit is credited in full toward any engagement
+          we agree to.
         </p>
       </div>
     </div>
@@ -27,15 +28,15 @@ const CAL_URL = "https://cal.com/valkyrie-remedy/intro";
       <dl class="vr-book-spec">
         <div>
           <dt>Length</dt>
-          <dd>30 minutes · Zoom</dd>
+          <dd>30 minutes · Google Meet</dd>
         </div>
         <div>
           <dt>Deposit</dt>
-          <dd>$80 · Credited if we work together</dd>
+          <dd>$50 · Credited toward any engagement</dd>
         </div>
         <div>
           <dt>You bring</dt>
-          <dd>Repo access, deployed URL, the question keeping you up</dd>
+          <dd>Your project & the questions you want answered</dd>
         </div>
         <div>
           <dt>I bring</dt>
@@ -44,15 +45,14 @@ const CAL_URL = "https://cal.com/valkyrie-remedy/intro";
       </dl>
     </div>
 
-    <div class="vr-stub__row" data-reveal style="--reveal-delay: 280ms">
+    <div class="vr-stub__row vr-stub__row--stacked" data-reveal style="--reveal-delay: 280ms">
       <span class="vr-eyebrow vr-eyebrow--dim">— Schedule</span>
-      <div class="vr-cal-frame" aria-label="Cal.com booking">
-        <div class="vr-cal-frame__head">
-          <span>cal.com / valkyrie-remedy / intro</span>
-          <span class="vr-tag"><span class="vr-tag__dot"></span>Embed slot</span>
-        </div>
-        <div class="vr-cal-frame__body">
-          <p class="vr-meta">Cal.com booking widget mounts here.</p>
+      <div class="vr-cal">
+        <div id="cal-embed" class="vr-cal__embed" aria-label="Cal.com booking"></div>
+        <noscript>
+          <p class="vr-meta vr-cal__fallback-meta">
+            JavaScript is required to load the scheduler.
+          </p>
           <a
             class="vr-cta"
             href={CAL_URL}
@@ -62,10 +62,66 @@ const CAL_URL = "https://cal.com/valkyrie-remedy/intro";
             <span>Open scheduler</span>
             <span class="vr-cta__arrow">↗</span>
           </a>
-        </div>
+        </noscript>
       </div>
     </div>
   </main>
+
+  <script is:inline define:vars={{ CAL_LINK }}>
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal;
+        let ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement("script")).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    Cal("init", "intro", { origin: "https://cal.com" });
+
+    Cal.ns.intro("inline", {
+      elementOrSelector: "#cal-embed",
+      calLink: CAL_LINK,
+      config: { layout: "month_view", theme: "dark" },
+    });
+
+    Cal.ns.intro("ui", {
+      theme: "dark",
+      hideEventTypeDetails: false,
+      layout: "month_view",
+      cssVarsPerTheme: {
+        dark: {
+          "cal-brand": "#a44434",
+          "cal-bg": "#060606",
+          "cal-bg-emphasis": "#0c0c0c",
+          "cal-bg-muted": "#14130f",
+          "cal-border": "rgba(255,255,255,0.10)",
+          "cal-border-subtle": "rgba(255,255,255,0.06)",
+          "cal-text": "#e9e3d5",
+          "cal-text-emphasis": "#e9e3d5",
+          "cal-text-muted": "rgba(233,227,213,0.55)",
+        },
+      },
+    });
+  </script>
 </Layout>
 
 <style>
@@ -74,7 +130,7 @@ const CAL_URL = "https://cal.com/valkyrie-remedy/intro";
     display: grid;
     align-content: start;
     gap: 1.5rem;
-    padding: 4rem 0 6rem;
+    padding-block: 4rem 6rem;
   }
   .vr-stub__row {
     display: grid;
@@ -85,6 +141,11 @@ const CAL_URL = "https://cal.com/valkyrie-remedy/intro";
   }
   @media (max-width: 720px) {
     .vr-stub__row { grid-template-columns: 1fr; gap: 1rem; }
+  }
+
+  .vr-stub__row--stacked {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 
   .vr-stack-3 > * + * { margin-top: 2rem; }
@@ -102,11 +163,17 @@ const CAL_URL = "https://cal.com/valkyrie-remedy/intro";
   }
   .vr-book-spec > div {
     display: grid;
-    grid-template-columns: 12ch 1fr;
+    grid-template-columns: 11ch 1fr;
     gap: 1rem;
     padding-bottom: 1rem;
     border-bottom: 1px dashed var(--vr-rule);
     align-items: baseline;
+  }
+  @media (max-width: 480px) {
+    .vr-book-spec > div {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
   }
   .vr-book-spec > div:last-child { border-bottom: 0; }
   .vr-book-spec dt {
@@ -123,34 +190,15 @@ const CAL_URL = "https://cal.com/valkyrie-remedy/intro";
     font-size: var(--vr-step-1);
   }
 
-  .vr-cal-frame {
-    border: 1px solid var(--vr-rule);
-    background: var(--vr-ink-2);
-    max-width: 720px;
-  }
-  .vr-cal-frame__head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid var(--vr-rule);
-    font-family: var(--vr-mono);
-    font-size: 0.72rem;
-    color: var(--vr-bone-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-  }
-  .vr-cal-frame__body {
-    padding: clamp(2rem, 6vw, 4rem) 1.5rem;
+  .vr-cal {
     display: grid;
-    gap: 1.5rem;
-    place-items: center;
-    text-align: center;
-    min-height: 280px;
-    background: repeating-linear-gradient(
-      135deg,
-      transparent 0 14px,
-      oklch(0.10 0.005 80) 14px 15px
-    );
+    gap: 1.25rem;
+    width: 100%;
   }
+  .vr-cal__embed {
+    width: 100%;
+    min-height: 680px;
+    overflow: hidden;
+  }
+  .vr-cal__fallback-meta { margin: 0; }
 </style>

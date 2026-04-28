@@ -1,41 +1,68 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const services: {
+const capabilities: {
   num: string;
-  title: string;
-  lede: string;
+  name: string;
+  desc: string;
   duration: string;
   format: string;
-  from: string;
+  kind: string;
   href: string;
 }[] = [
   {
     num: "01",
-    title: "Code review",
-    lede: "A close read of what you shipped — where it works, where it lies, where it falls over the moment a real user shows up.",
+    name: "Code review",
+    desc: "A close read of what you've built — what holds, what strains, what won't survive a real user.",
     duration: "3–5 days",
     format: "Written report + walkthrough",
-    from: "$650",
+    kind: "Code audit",
     href: "/services#code-review",
   },
   {
     num: "02",
-    title: "Site rebuild",
-    lede: "Same intent, real foundation. I keep what was right and replace the rest with code that won't surprise you on Monday.",
-    duration: "2–4 weeks",
-    format: "Astro site, deployed",
-    from: "$3,200",
-    href: "/services#site-rebuild",
+    name: "Security audit",
+    desc: "A quiet sweep for what AI assistants forget — keys, headers, payloads, the back door behind the polite front door.",
+    duration: "5–7 days",
+    format: "Findings + remediation plan",
+    kind: "Security review",
+    href: "/services#security-audit",
   },
   {
     num: "03",
-    title: "Security audit",
-    lede: "A quiet sweep for the things AI assistants forget — keys, headers, payloads, the back door behind the polite front door.",
-    duration: "5–7 days",
-    format: "Findings + remediation plan",
-    from: "$1,400",
-    href: "/services#security-audit",
+    name: "Rebuild",
+    desc: "Same intent, real foundation. The right parts stay; the rest gets replaced with code that's documented, tested, and built to last.",
+    duration: "2–4 weeks",
+    format: "Scoped delivery, deployed + documented",
+    kind: "Replatform",
+    href: "/services#rebuild",
+  },
+  {
+    num: "04",
+    name: "Scaling",
+    desc: "When traffic, load, or surface area outgrows what got it shipped. Real architecture, before the next inflection point.",
+    duration: "TBD",
+    format: "Assessment report + implementation sprints",
+    kind: "Infrastructure",
+    href: "/services#scaling",
+  },
+  {
+    num: "05",
+    name: "Coaching",
+    desc: "Working sessions for founders learning to ship the next version themselves — shoulder to shoulder, in your codebase.",
+    duration: "TBD",
+    format: "Live working sessions",
+    kind: "Advisory",
+    href: "/services#coaching",
+  },
+  {
+    num: "06",
+    name: "Retainer",
+    desc: "Ongoing counsel and capacity, by the month. Senior expertise always within reach for what you're shipping next.",
+    duration: "Monthly",
+    format: "Async review + quick calls + code check-ins",
+    kind: "Fractional CTO",
+    href: "/services#retainer",
   },
 ];
 
@@ -43,22 +70,22 @@ const steps: { num: string; title: string; body: string }[] = [
   {
     num: "·01",
     title: "Intro call",
-    body: "Thirty minutes, paid. We confirm the work is real and the fit is honest.",
+    body: "Thirty minutes, paid. You tell me what's broken. I tell you if I'm the right person to fix it. If we move forward, the fee rolls into your project.",
   },
   {
     num: "·02",
     title: "Scoped proposal",
-    body: "Written, fixed, boring on purpose. You see the plan before signing.",
+    body: "Written scope, fixed price. You know exactly what you're getting before you agree to anything.",
   },
   {
     num: "·03",
     title: "The work",
-    body: "I work in a private channel with daily notes. You always know the state.",
+    body: "I work with daily notes in a shared channel. No black box — you always know where things stand.",
   },
   {
     num: "·04",
     title: "Handoff",
-    body: "Documented. You leave with a site you can hand to anyone — including yourself.",
+    body: "Documented. Whatever we built, found, or fixed — it's yours, in writing, with enough context that it doesn't die with this engagement.",
   },
 ];
 ---
@@ -74,56 +101,26 @@ const steps: { num: string; title: string; body: string }[] = [
           <span>Now booking · Q2 / Q3 2026</span>
         </span>
         <span class="vr-hero__status-cell vr-hero__status-cell--right">
-          <span class="vr-meta">Solo practice · Remote</span>
+          <span class="vr-meta">By application · Private Practice</span>
         </span>
       </div>
 
       <div class="vr-forge">
-        <div
-          class="vr-forge__sigil"
-          aria-hidden="true"
-          data-reveal
-          style="--reveal-delay: 120ms"
-        >
-          <svg viewBox="0 0 200 220" width="100%" height="100%">
-            <g fill="none" stroke="currentColor" stroke-width="1.4">
-              <circle cx="100" cy="110" r="92" stroke-opacity=".35"></circle>
-              <circle cx="100" cy="110" r="74" stroke-opacity=".18"></circle>
-              <path d="M40 38 L100 168 L160 38" stroke-width="2"></path>
-              <path d="M70 110 L130 110"></path>
-              <path d="M100 110 L132 168" stroke-width="2"></path>
-              <path
-                d="M100 8 V22 M100 198 V212 M8 110 H22 M178 110 H192"
-                stroke-opacity=".55"></path>
-            </g>
-            <text
-              x="100"
-              y="110"
-              text-anchor="middle"
-              dominant-baseline="middle"
-              font-family="JetBrains Mono, monospace"
-              font-size="7"
-              letter-spacing="3"
-              fill="currentColor"
-              opacity=".6">VR · MMXXVI</text>
-          </svg>
-        </div>
-
         <div class="vr-forge__type">
           <p class="vr-eyebrow" data-reveal style="--reveal-delay: 220ms">
-            — One engineer, by design
+            — A practice for founders & creators
           </p>
 
           <h1 class="vr-h1 vr-forge__h1" data-reveal style="--reveal-delay: 320ms">
-            Your code has<br />
-            <em>vibes.</em><br />
-            I have the remedy.
+            From vision<br />
+            to <em>foundation.</em>
           </h1>
 
           <p class="vr-body" data-reveal style="--reveal-delay: 480ms">
-            Code reviews, rebuilds, and security audits for founders and
-            creators who shipped a site with AI and now need it made real. No
-            retainers. No coaching. The fixer who just walked in the room.
+            Code review, security audits, rebuilds, scaling, retainers,
+            coaching — direct work for founders and creators who want what
+            they're building made permanent. No handoffs, no agency middle,
+            no contractor pipeline.
           </p>
 
           <div class="vr-row" data-reveal style="--reveal-delay: 600ms">
@@ -144,44 +141,51 @@ const steps: { num: string; title: string; body: string }[] = [
   <!-- ============ THE WORK ============ -->
   <section class="vr-work vr-shell" id="work">
     <header class="vr-work__head" data-reveal>
-      <span class="vr-eyebrow">— What I do ⁄ §02</span>
-      <h2 class="vr-h2 vr-work__title">
-        Three things.<br />
-        <em>One person.</em>
-      </h2>
+      <span class="vr-eyebrow">— The work ⁄ §02</span>
+      <div class="vr-work__intro">
+        <h2 class="vr-h2 vr-work__title">
+          From first review<br />
+          to ongoing <em>retainer.</em>
+        </h2>
+        <p class="vr-body vr-work__lede">
+          Engagements run the arc — from a single close read of what you've
+          built to ongoing counsel that grows with what you're shipping.
+          Scope is set in writing before any work begins.
+        </p>
+      </div>
     </header>
 
-    <ol class="vr-work__list">
+    <ul class="vr-capabilities">
       {
-        services.map((s, i) => (
+        capabilities.map((c, i) => (
           <li
-            class="vr-svc"
+            class="vr-cap"
             data-reveal
-            style={`--reveal-delay: ${120 + i * 120}ms`}
+            style={`--reveal-delay: ${80 + i * 60}ms`}
           >
-            <header class="vr-svc__top">
-              <span class="vr-svc__num">{s.num}</span>
-              <span class="vr-svc__from">From {s.from}</span>
+            <header class="vr-cap__top">
+              <span class="vr-cap__num">{c.num}</span>
+              <span class="vr-cap__kind">{c.kind}</span>
             </header>
-            <h3 class="vr-h3 vr-svc__title">{s.title}</h3>
-            <p class="vr-svc__lede">{s.lede}</p>
-            <dl class="vr-svc__meta">
+            <h3 class="vr-cap__name">{c.name}</h3>
+            <p class="vr-cap__desc">{c.desc}</p>
+            <dl class="vr-cap__meta">
               <div>
                 <dt>Duration</dt>
-                <dd>{s.duration}</dd>
+                <dd>{c.duration}</dd>
               </div>
               <div>
                 <dt>Format</dt>
-                <dd>{s.format}</dd>
+                <dd>{c.format}</dd>
               </div>
             </dl>
-            <a class="vr-svc__more" href={s.href}>
+            <a class="vr-cap__more" href={c.href}>
               Read more <span aria-hidden="true">→</span>
             </a>
           </li>
         ))
       }
-    </ol>
+    </ul>
   </section>
 
   <!-- ============ PROCESS ============ -->
@@ -211,28 +215,34 @@ const steps: { num: string; title: string; body: string }[] = [
   <!-- ============ FINAL CTA ============ -->
   <section class="vr-final vr-shell">
     <div class="vr-final__inner" data-reveal>
-      <h2 class="vr-h2 vr-final__h">
-        Something's off,<br />
-        <em>and you know it.</em>
-      </h2>
-      <p class="vr-body vr-final__p">
-        Bring the site. Bring the dread. Thirty minutes is enough to tell you
-        whether I'm the right person, and what comes next either way.
-      </p>
-      <a class="vr-cta" href="/book">
-        <span>Book a Call</span>
-        <span class="vr-cta__arrow">→</span>
-      </a>
-      <p class="vr-meta vr-final__meta">
-        $80 deposit · Credited toward any engagement
-      </p>
+      <div class="vr-final__head">
+        <span class="vr-eyebrow">— Begin ⁄ §04</span>
+        <h2 class="vr-h2 vr-final__h">
+          Start with a call.<br />
+          <em>Decide from there.</em>
+        </h2>
+      </div>
+      <div class="vr-final__body">
+        <p class="vr-body vr-final__p">
+          Walk me through what you've built. Thirty minutes is enough to
+          tell whether I'm the right person — and to leave you with a real
+          answer either way.
+        </p>
+        <a class="vr-cta" href="/book">
+          <span>Book a Call</span>
+          <span class="vr-cta__arrow">→</span>
+        </a>
+        <p class="vr-meta vr-final__meta">
+          $50 deposit · Credited toward any engagement
+        </p>
+      </div>
     </div>
   </section>
 </Layout>
 
 <style>
   /* ===== Hero ===== */
-  .vr-hero { padding: 1rem 0 6rem; }
+  .vr-hero { padding-block: 1rem clamp(3rem, 8vw, 6rem); }
   .vr-hero__inner { position: relative; }
 
   .vr-hero__status {
@@ -246,8 +256,8 @@ const steps: { num: string; title: string; body: string }[] = [
     font-size: var(--vr-step--1);
     color: var(--vr-bone-faint);
     text-transform: uppercase;
-    letter-spacing: 0.16em;
-    margin-bottom: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: 0.12em;
+    margin-bottom: clamp(2rem, 6vw, 5rem);
   }
   .vr-hero__status-cell {
     display: inline-flex;
@@ -257,86 +267,89 @@ const steps: { num: string; title: string; body: string }[] = [
   .vr-hero__status-cell--right { justify-content: flex-end; }
 
   @media (max-width: 600px) {
-    .vr-hero__status { grid-template-columns: 1fr; gap: 0.4rem; }
+    .vr-hero__status {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      letter-spacing: 0.08em;
+    }
     .vr-hero__status-cell--right { justify-content: flex-start; }
   }
 
   /* Forge */
-  .vr-forge {
-    display: grid;
-    grid-template-columns: minmax(220px, 0.6fr) minmax(0, 1fr);
-    gap: clamp(1.5rem, 5vw, 4rem);
-    align-items: center;
-    padding: 2rem 0 1rem;
-  }
-  @media (max-width: 800px) {
-    .vr-forge { grid-template-columns: 1fr; }
-  }
-
-  .vr-forge__sigil {
-    color: var(--vr-gold);
-    aspect-ratio: 1;
-    max-width: 360px;
-    filter: drop-shadow(0 0 30px oklch(0.62 0.09 75 / 0.18));
-    animation: vr-sigil 9s ease-in-out infinite alternate;
-  }
-  @keyframes vr-sigil {
-    from { transform: rotate(-0.4deg) translateY(0); }
-    to   { transform: rotate(0.4deg) translateY(-3px); }
-  }
-
-  .vr-forge__type { display: grid; gap: 1.4rem; }
+  .vr-forge { padding: clamp(1.5rem, 4vw, 2rem) 0 1rem; }
+  .vr-forge__type { display: grid; gap: clamp(1rem, 2.5vw, 1.4rem); }
   .vr-forge__h1 em { color: var(--vr-gold); font-style: italic; }
 
   /* ===== The work ===== */
-  .vr-work { padding: clamp(3rem, 8vw, 5rem) 0; }
+  .vr-work { padding-block: clamp(5rem, 10vw, 8rem); }
+
   .vr-work__head {
     display: grid;
-    grid-template-columns: minmax(120px, 200px) 1fr;
-    gap: clamp(1rem, 4vw, 4rem);
-    align-items: end;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid var(--vr-rule);
+    grid-template-columns: minmax(140px, 200px) 1fr;
+    gap: clamp(1.5rem, 5vw, 4rem);
+    align-items: start;
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
   }
   @media (max-width: 720px) {
     .vr-work__head { grid-template-columns: 1fr; }
   }
-  .vr-work__title em { color: var(--vr-gold); font-style: italic; }
 
-  .vr-work__list {
+  .vr-work__intro {
+    display: grid;
+    gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  }
+  .vr-work__title em { color: var(--vr-iron); font-style: italic; }
+  .vr-work__lede { margin: 0; max-width: 56ch; }
+
+  .vr-capabilities {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-  }
-  @media (max-width: 900px) {
-    .vr-work__list { grid-template-columns: 1fr; }
+    border-top: 1px solid var(--vr-rule);
   }
 
-  .vr-svc {
-    padding: 3rem 2rem 3rem 0;
+  .vr-cap {
+    padding: clamp(2rem, 3vw, 2.75rem) clamp(1.5rem, 2.5vw, 2.25rem);
     border-right: 1px solid var(--vr-rule);
+    border-bottom: 1px solid var(--vr-rule);
     display: grid;
-    gap: 1.2rem;
+    gap: 1.1rem;
     align-content: start;
     transition: background 280ms var(--vr-ease);
   }
-  .vr-svc:hover {
-    background: linear-gradient(180deg, oklch(0.10 0.005 80) 0%, transparent 100%);
+  .vr-cap:hover {
+    background: linear-gradient(180deg, oklch(0.10 0.01 30) 0%, transparent 100%);
   }
-  .vr-svc:last-child { border-right: 0; }
+  .vr-cap:nth-child(3n) { border-right: 0; }
+  .vr-cap:nth-last-child(-n+3) { border-bottom: 0; }
+
   @media (max-width: 900px) {
-    .vr-svc {
-      border-right: 0;
-      border-bottom: 1px solid var(--vr-rule);
-      padding: 2.5rem 0;
-    }
-    .vr-svc:last-child { border-bottom: 0; }
+    .vr-capabilities { grid-template-columns: repeat(2, 1fr); }
+    .vr-cap:nth-child(3n) { border-right: 1px solid var(--vr-rule); }
+    .vr-cap:nth-child(2n) { border-right: 0; }
+    .vr-cap:nth-last-child(-n+3) { border-bottom: 1px solid var(--vr-rule); }
+    .vr-cap:nth-last-child(-n+2) { border-bottom: 0; }
   }
 
-  .vr-svc__top {
+  @media (max-width: 600px) {
+    .vr-capabilities { grid-template-columns: 1fr; }
+    .vr-cap,
+    .vr-cap:nth-child(2n),
+    .vr-cap:nth-child(3n) {
+      padding: 2rem 0;
+      border-right: 0;
+      border-bottom: 1px solid var(--vr-rule);
+    }
+    .vr-cap:nth-last-child(-n+3),
+    .vr-cap:nth-last-child(-n+2) {
+      border-bottom: 1px solid var(--vr-rule);
+    }
+    .vr-cap:last-child { border-bottom: 0; }
+  }
+
+  .vr-cap__top {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -346,45 +359,55 @@ const steps: { num: string; title: string; body: string }[] = [
     letter-spacing: 0.18em;
     text-transform: uppercase;
   }
-  .vr-svc__num {
+  .vr-cap__num {
     font-family: var(--vr-serif);
     font-style: italic;
+    font-weight: 500;
     font-size: 1.1rem;
-    color: var(--vr-gold);
+    color: var(--vr-iron);
     letter-spacing: 0;
   }
-  .vr-svc__from { color: var(--vr-gold); }
+  .vr-cap__kind { color: var(--vr-iron); }
 
-  .vr-svc__title { color: var(--vr-bone); }
-
-  .vr-svc__lede {
-    color: var(--vr-bone-dim);
-    font-size: var(--vr-step-1);
-    line-height: 1.45;
-    max-width: 30ch;
+  .vr-cap__name {
+    font-family: var(--vr-serif);
+    font-weight: 500;
+    font-style: italic;
+    font-size: var(--vr-step-2);
+    letter-spacing: -0.01em;
+    color: var(--vr-bone);
+    margin: 0;
   }
 
-  .vr-svc__meta {
+  .vr-cap__desc {
+    font-family: var(--vr-serif-body);
+    font-size: var(--vr-step-1);
+    line-height: 1.5;
+    color: var(--vr-bone-dim);
+    margin: 0;
+  }
+
+  .vr-cap__meta {
     display: grid;
     gap: 0.5rem;
     margin: 0;
-    padding: 1rem 0;
+    padding: 1rem 0 0;
     border-top: 1px dashed var(--vr-rule);
     font-family: var(--vr-mono);
     font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }
-  .vr-svc__meta > div {
+  .vr-cap__meta > div {
     display: grid;
     grid-template-columns: 8ch 1fr;
-    gap: 0.6rem;
+    gap: 0.9rem;
   }
-  .vr-svc__meta dt { color: var(--vr-bone-faint); margin: 0; }
-  .vr-svc__meta dd { color: var(--vr-bone); margin: 0; }
+  .vr-cap__meta dt { color: var(--vr-bone-faint); margin: 0; }
+  .vr-cap__meta dd { color: var(--vr-bone); margin: 0; }
 
-  .vr-svc__more {
-    color: var(--vr-gold);
+  .vr-cap__more {
+    color: var(--vr-iron);
     font-family: var(--vr-mono);
     font-size: 0.72rem;
     letter-spacing: 0.16em;
@@ -396,13 +419,13 @@ const steps: { num: string; title: string; body: string }[] = [
       border-color 240ms var(--vr-ease),
       color 240ms var(--vr-ease);
   }
-  .vr-svc__more:hover {
-    color: var(--vr-gold-warm);
-    border-color: var(--vr-gold);
+  .vr-cap__more:hover {
+    color: var(--vr-iron-warm);
+    border-color: var(--vr-iron);
   }
 
   /* ===== Process ===== */
-  .vr-process { padding: clamp(4rem, 8vw, 6rem) 0; }
+  .vr-process { padding-block: clamp(4rem, 8vw, 6rem); }
   .vr-process__inner {
     display: grid;
     grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr);
@@ -415,6 +438,11 @@ const steps: { num: string; title: string; body: string }[] = [
     display: grid;
     gap: 1.2rem;
     align-content: start;
+    position: sticky;
+    top: 2rem;
+  }
+  @media (max-width: 900px) {
+    .vr-process__head { position: static; }
   }
   .vr-process__head em { color: var(--vr-gold); font-style: italic; }
 
@@ -423,53 +451,129 @@ const steps: { num: string; title: string; body: string }[] = [
     padding: 0;
     margin: 0;
     display: grid;
-    gap: 1px;
-    background: var(--vr-rule);
+    gap: 0;
   }
   .vr-process__steps li {
+    position: relative;
     background: var(--vr-ink);
-    padding: 1.6rem 0;
+    padding: clamp(1.1rem, 2vw, 1.6rem) clamp(1rem, 2vw, 1.5rem)
+             clamp(1.1rem, 2vw, 1.6rem) 0;
     display: grid;
-    grid-template-columns: 80px minmax(140px, 220px) 1fr;
-    gap: clamp(1rem, 3vw, 2.5rem);
-    align-items: baseline;
+    grid-template-columns: clamp(80px, 14vw, 140px) 1fr;
+    grid-template-areas:
+      "num title"
+      "num body";
+    column-gap: clamp(1rem, 3vw, 2.5rem);
+    row-gap: 0.55rem;
+    align-items: start;
+    border-top: 1px solid var(--vr-rule);
+    transition:
+      background 360ms var(--vr-ease),
+      padding-left 360ms var(--vr-ease);
   }
+  .vr-process__num { grid-area: num; }
+  .vr-process__steps h3 { grid-area: title; }
+  .vr-process__steps p { grid-area: body; }
+  .vr-process__steps li:last-child { border-bottom: 1px solid var(--vr-rule); }
+
+  .vr-process__steps li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -1px;
+    bottom: -1px;
+    width: 2px;
+    background: var(--vr-gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 420ms var(--vr-ease);
+  }
+  .vr-process__steps li:hover {
+    background: linear-gradient(180deg, oklch(0.10 0.01 30) 0%, transparent 100%);
+    padding-left: clamp(1rem, 2vw, 1.5rem);
+  }
+  .vr-process__steps li:hover::before { transform: scaleY(1); }
+
   @media (max-width: 720px) {
-    .vr-process__steps li { grid-template-columns: 60px 1fr; }
-    .vr-process__steps li p { grid-column: 2; }
+    .vr-process__steps li {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "num"
+        "title"
+        "body";
+      row-gap: 0.5rem;
+      padding: 1.25rem 0;
+    }
+    .vr-process__steps li:hover { padding-left: 0; }
   }
+
   .vr-process__steps h3 {
-    margin: 0;
+    margin: 0 0 0.4rem;
     font-family: var(--vr-serif);
     font-weight: 500;
+    font-style: italic;
     font-size: var(--vr-step-2);
     letter-spacing: -0.01em;
+    color: var(--vr-bone);
+    line-height: 1.1;
   }
   .vr-process__steps p {
     margin: 0;
     color: var(--vr-bone-dim);
+    font-family: var(--vr-serif-body);
     font-size: var(--vr-step-1);
-    max-width: 48ch;
+    line-height: 1.55;
+    max-width: 54ch;
   }
   .vr-process__num {
-    font-family: var(--vr-mono);
-    font-size: 0.78rem;
+    display: block;
+    font-family: var(--vr-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2.75rem, 6vw, 4.25rem);
     color: var(--vr-gold);
-    letter-spacing: 0.18em;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    align-self: start;
+    transition: color 360ms var(--vr-ease), transform 360ms var(--vr-ease);
+  }
+  .vr-process__steps li:hover .vr-process__num {
+    color: var(--vr-iron-warm, var(--vr-gold));
+    transform: translateX(-2px);
   }
 
   /* ===== Final ===== */
-  .vr-final { padding: clamp(4rem, 8vw, 6rem) 0 8rem; }
+  .vr-final { padding-block: clamp(4rem, 8vw, 6rem) 8rem; }
   .vr-final__inner {
     display: grid;
-    gap: 2rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
     border-top: 1px solid var(--vr-rule);
-    padding-top: 4rem;
-    max-width: 36ch;
+    padding-top: clamp(3rem, 6vw, 5rem);
   }
+  @media (max-width: 800px) {
+    .vr-final__inner { grid-template-columns: 1fr; }
+  }
+  .vr-final__head {
+    display: grid;
+    gap: 1.2rem;
+    align-content: start;
+  }
+  .vr-final__body {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+    justify-items: start;
+    max-width: 60ch;
+    padding-top: clamp(1rem, 2vw, 2rem);
+  }
+  @media (max-width: 800px) {
+    .vr-final__body { padding-top: 0; }
+  }
+  .vr-final__h { margin: 0; }
   .vr-final__h em { color: var(--vr-gold); font-style: italic; }
-  .vr-final__p { max-width: 48ch; }
-  .vr-final__meta { color: var(--vr-bone-faint); }
+  .vr-final__p { margin: 0; }
+  .vr-final__meta { color: var(--vr-bone-faint); margin: 0; }
 
   .vr-row {
     display: flex;

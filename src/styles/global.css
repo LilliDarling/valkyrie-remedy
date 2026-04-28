@@ -13,21 +13,26 @@
   --color-bone: oklch(0.93 0.012 80);
   --color-bone-dim: oklch(0.78 0.01 80);
   --color-bone-faint: oklch(0.55 0.008 80);
-  --color-rule: oklch(0.28 0.01 75);
-  --color-gold: oklch(0.62 0.09 75);
-  --color-gold-dim: oklch(0.52 0.08 72);
-  --color-gold-warm: oklch(0.7 0.1 78);
+  --color-rule: oklch(0.28 0.01 30);
+  --color-iron: oklch(0.50 0.13 28);
+  --color-iron-dim: oklch(0.42 0.11 26);
+  --color-iron-warm: oklch(0.58 0.14 32);
+  /* Back-compat: --color-gold names alias to the new iron-red accent */
+  --color-gold: var(--color-iron);
+  --color-gold-dim: var(--color-iron-dim);
+  --color-gold-warm: var(--color-iron-warm);
 
   --font-serif: "Cormorant Garamond", "EB Garamond", "Times New Roman", serif;
+  --font-serif-body: "EB Garamond", "Cormorant Garamond", "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   --text-step--1: clamp(0.78rem, 0.74rem + 0.20vw, 0.86rem);
   --text-step-0:  clamp(0.95rem, 0.90rem + 0.30vw, 1.06rem);
-  --text-step-1:  clamp(1.10rem, 1.00rem + 0.50vw, 1.30rem);
-  --text-step-2:  clamp(1.40rem, 1.20rem + 1.00vw, 1.75rem);
-  --text-step-3:  clamp(2.00rem, 1.50rem + 2.50vw, 3.10rem);
-  --text-step-4:  clamp(3.00rem, 2.20rem + 4.00vw, 5.20rem);
-  --text-step-5:  clamp(4.50rem, 3.00rem + 7.00vw, 8.50rem);
+  --text-step-1:  clamp(1.05rem, 0.96rem + 0.45vw, 1.30rem);
+  --text-step-2:  clamp(1.25rem, 1.05rem + 1.00vw, 1.75rem);
+  --text-step-3:  clamp(1.65rem, 1.05rem + 3.00vw, 3.10rem);
+  --text-step-4:  clamp(2.10rem, 0.96rem + 5.50vw, 5.20rem);
+  --text-step-5:  clamp(2.75rem, 0.95rem + 8.80vw, 8.50rem);
 
   --container-shell: 1280px;
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -42,10 +47,15 @@
   --vr-bone-dim: var(--color-bone-dim);
   --vr-bone-faint: var(--color-bone-faint);
   --vr-rule: var(--color-rule);
-  --vr-gold: var(--color-gold);
-  --vr-gold-dim: var(--color-gold-dim);
-  --vr-gold-warm: var(--color-gold-warm);
+  --vr-iron: var(--color-iron);
+  --vr-iron-dim: var(--color-iron-dim);
+  --vr-iron-warm: var(--color-iron-warm);
+  /* Back-compat aliases — existing --vr-gold references still resolve */
+  --vr-gold: var(--color-iron);
+  --vr-gold-dim: var(--color-iron-dim);
+  --vr-gold-warm: var(--color-iron-warm);
   --vr-serif: var(--font-serif);
+  --vr-serif-body: var(--font-serif-body);
   --vr-mono: var(--font-mono);
   --vr-step--1: var(--text-step--1);
   --vr-step-0: var(--text-step-0);
@@ -55,7 +65,7 @@
   --vr-step-4: var(--text-step-4);
   --vr-step-5: var(--text-step-5);
   --vr-shell: var(--container-shell);
-  --vr-gutter: clamp(1.25rem, 0.50rem + 3vw, 3rem);
+  --vr-gutter: clamp(1.5rem, 0.75rem + 4vw, 3rem);
   --vr-radius: 2px;
   --vr-ease: var(--ease-out);
   --vr-grain-opacity: 0.16;
@@ -73,15 +83,25 @@
 @layer base {
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
-  html { color-scheme: dark; }
+  html { color-scheme: dark; scroll-behavior: smooth; }
+  /* Lenis takes over wheel/trackpad scrolling and disables native smooth scroll;
+     this rule remains as a fallback when Lenis is absent (reduced motion / no JS). */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: clip; }
+  .lenis.lenis-smooth iframe { pointer-events: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
 
   body {
     background: var(--vr-ink);
     color: var(--vr-bone);
-    font-family: var(--vr-serif);
+    font-family: var(--vr-serif-body);
     font-size: var(--vr-step-0);
     line-height: 1.55;
-    font-feature-settings: "ss01", "kern";
+    font-feature-settings: "kern";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
@@ -111,7 +131,7 @@ body::before {
   pointer-events: none;
   background: radial-gradient(
     520px circle at var(--vr-cursor-x) var(--vr-cursor-y),
-    oklch(0.32 0.06 75 / 0.55) 0%,
+    oklch(0.34 0.08 28 / 0.55) 0%,
     transparent 60%
   );
   opacity: var(--vr-cursor-strength);
@@ -170,9 +190,11 @@ body::after {
   font-family: var(--vr-serif);
   font-weight: 500;
   font-size: var(--vr-step-5);
-  line-height: 0.92;
+  line-height: 0.95;
   letter-spacing: -0.02em;
   text-wrap: balance;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 .vr-h1 em { font-style: italic; color: var(--vr-bone); }
 
@@ -180,23 +202,25 @@ body::after {
   font-family: var(--vr-serif);
   font-weight: 500;
   font-size: var(--vr-step-4);
-  line-height: 0.98;
+  line-height: 1.02;
   letter-spacing: -0.015em;
   text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 .vr-h3 {
   font-family: var(--vr-serif);
   font-weight: 500;
   font-size: var(--vr-step-3);
-  line-height: 1.05;
+  line-height: 1.1;
   letter-spacing: -0.01em;
+  overflow-wrap: break-word;
 }
 
 .vr-body {
-  font-family: var(--vr-serif);
+  font-family: var(--vr-serif-body);
   font-size: var(--vr-step-1);
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--vr-bone-dim);
   text-wrap: pretty;
   max-width: 60ch;
