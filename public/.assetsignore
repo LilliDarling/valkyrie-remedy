@@ -1,0 +1,4 @@
+# Wrangler reads this from the assets root (./dist) and excludes matching
+# paths from public asset upload. Server-side bundles must stay private.
+_worker.js
+_routes.json
