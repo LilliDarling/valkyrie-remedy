@@ -1,0 +1,132 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const lastUpdated = "April 2026";
+---
+
+<Layout
+  title="Terms"
+  description="Plain-language terms for using this site and engaging Valkyrie Remedy."
+>
+  <main class="vr-shell vr-stub">
+    <div class="vr-stub__row" data-reveal>
+      <span class="vr-eyebrow">— Terms ⁄ §00</span>
+      <div class="vr-prose">
+        <h1 class="vr-h2">Terms.</h1>
+        <p class="vr-meta">Last updated: {lastUpdated}</p>
+        <p class="vr-body">
+          These are the terms that govern your use of this site and the
+          services described on it. They are deliberately short and
+          plain. The actual engagement is governed by the written scope
+          you sign before work begins; that document controls if there's
+          any conflict with this page.
+        </p>
+
+        <h2 class="vr-prose__h">The site.</h2>
+        <p class="vr-body">
+          The pages here describe services I offer. They are not an offer
+          you can accept by clicking a button — every engagement begins
+          with a written scope, signed by both of us, before work starts.
+        </p>
+
+        <h2 class="vr-prose__h">Booking deposits.</h2>
+        <p class="vr-body">
+          The $50 deposit for an intro call is collected by Stripe via
+          Cal.com. It's credited in full toward any engagement we agree
+          to. If we don't move forward, the deposit pays for the time you
+          had on the call. Refunds for cancellations made more than 48
+          hours before the call are honored on request.
+        </p>
+
+        <h2 class="vr-prose__h">Engagements.</h2>
+        <p class="vr-body">
+          Every engagement is governed by its written scope: deliverables,
+          timeline, price, what's in, what's out, and warranty terms (if
+          any). Rebuilds include a 30-day warranty on what I built;
+          everything else is scoped per engagement.
+        </p>
+
+        <h2 class="vr-prose__h">Confidentiality.</h2>
+        <p class="vr-body">
+          Anything you share in the course of an engagement — code,
+          documentation, internal processes, business context — is
+          confidential. I sign NDAs on request and default to treating
+          everything as confidential whether one is in place or not.
+        </p>
+
+        <h2 class="vr-prose__h">Limits.</h2>
+        <p class="vr-body">
+          I do my best work and stand behind it, but I can't guarantee
+          outcomes that depend on factors outside what I touched. To the
+          extent allowed by law, my liability for any engagement is
+          limited to the fees paid for that engagement. Nothing in these
+          terms attempts to exclude liability that can't lawfully be
+          excluded.
+        </p>
+
+        <h2 class="vr-prose__h">Governing law.</h2>
+        <p class="vr-body">
+          These terms are governed by the laws of the jurisdiction in
+          which I operate, and disputes will be resolved there. The
+          specific jurisdiction is identified on each engagement's signed
+          scope.
+        </p>
+
+        <h2 class="vr-prose__h">Changes.</h2>
+        <p class="vr-body">
+          If these terms change, the date at the top updates. If you
+          have a live engagement, the terms in effect when you signed
+          your scope continue to apply to that work.
+        </p>
+
+        <h2 class="vr-prose__h">Plain talk.</h2>
+        <p class="vr-body">
+          This page is a working draft authored by an engineer, not a
+          lawyer. It exists to set honest expectations. For binding
+          language consult a professional. If you have questions or
+          concerns, email
+          <a href="mailto:hello@valkyrieremedy.com">hello@valkyrieremedy.com</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .vr-stub {
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+    padding-block: 4rem 6rem;
+  }
+  .vr-stub__row {
+    display: grid;
+    grid-template-columns: minmax(120px, 200px) 1fr;
+    gap: clamp(1rem, 4vw, 4rem);
+    align-items: start;
+    padding-block: 2rem;
+  }
+  @media (max-width: 720px) {
+    .vr-stub__row { grid-template-columns: 1fr; gap: 1rem; }
+  }
+  .vr-prose {
+    max-width: 78ch;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .vr-prose .vr-body { max-width: none; margin: 0; }
+  .vr-prose__h {
+    margin: 1.5rem 0 0;
+    font-family: var(--vr-serif);
+    font-weight: 500;
+    font-size: var(--vr-step-2);
+    color: var(--vr-bone);
+  }
+  .vr-prose a {
+    color: var(--vr-gold);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  .vr-prose a:hover { color: var(--vr-iron-warm); }
+</style>

@@ -1,0 +1,147 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const lastUpdated = "April 2026";
+---
+
+<Layout
+  title="Privacy"
+  description="What data leaves your browser when you use this site, where it goes, and what control you have over it."
+>
+  <main class="vr-shell vr-stub">
+    <div class="vr-stub__row" data-reveal>
+      <span class="vr-eyebrow">— Privacy ⁄ §00</span>
+      <div class="vr-prose">
+        <h1 class="vr-h2">Privacy.</h1>
+        <p class="vr-meta">Last updated: {lastUpdated}</p>
+        <p class="vr-body">
+          This is a one-person engineering practice. The aim of this page is
+          to tell you, in plain language, what data leaves your browser when
+          you use this site, where it goes, and what control you have over
+          it.
+        </p>
+
+        <h2 class="vr-prose__h">What I collect.</h2>
+        <p class="vr-body">
+          <strong>Email addresses you give me.</strong> If you join the
+          course waitlist, your email is sent to my email service provider
+          (MailerLite) and tagged to a specific list. I will use it to
+          contact you about the course and nothing else. I won't sell or
+          share it.
+        </p>
+        <p class="vr-body">
+          <strong>Booking information.</strong> When you book a call, the
+          form is provided by Cal.com. The information you submit (name,
+          email, scheduling details, payment) is processed by Cal.com and
+          their payment provider, Stripe. I receive the booking and the
+          email address; I do not see, store, or have access to your card
+          details.
+        </p>
+        <p class="vr-body">
+          <strong>Server logs.</strong> Cloudflare records standard request
+          metadata (IP, user agent, request path) for the site and uses it
+          for protecting the site against abuse. I do not store these logs
+          beyond Cloudflare's defaults.
+        </p>
+
+        <h2 class="vr-prose__h">What I do not collect.</h2>
+        <p class="vr-body">
+          No analytics scripts. No advertising trackers. No fingerprinting.
+          No third-party cookies set by this site directly.
+        </p>
+
+        <h2 class="vr-prose__h">Third parties.</h2>
+        <ul class="vr-prose__list">
+          <li>
+            <strong>MailerLite</strong> — stores email addresses for the
+            waitlist. <a href="https://www.mailerlite.com/legal/privacy-policy">Their privacy policy</a>.
+          </li>
+          <li>
+            <strong>Cal.com</strong> — handles scheduling and the booking
+            form. <a href="https://cal.com/privacy">Their privacy policy</a>.
+          </li>
+          <li>
+            <strong>Stripe</strong> — processes the booking deposit, via
+            Cal.com. <a href="https://stripe.com/privacy">Their privacy policy</a>.
+          </li>
+          <li>
+            <strong>Cloudflare</strong> — hosts the site and provides
+            security. <a href="https://www.cloudflare.com/privacypolicy/">Their privacy policy</a>.
+          </li>
+          <li>
+            <strong>Google Fonts</strong> — serves typefaces. Loading a
+            page issues a request to fonts.gstatic.com.
+          </li>
+        </ul>
+
+        <h2 class="vr-prose__h">Your rights.</h2>
+        <p class="vr-body">
+          If you're in a jurisdiction with data-protection laws (EU/UK
+          GDPR, California CCPA, etc.), you have the right to access,
+          correct, or delete the personal data I hold about you. Email
+          <a href="mailto:hello@valkyrieremedy.com">hello@valkyrieremedy.com</a>
+          and I'll handle it within 30 days. To unsubscribe from the
+          waitlist directly, every email I send through MailerLite has a
+          one-click unsubscribe.
+        </p>
+
+        <h2 class="vr-prose__h">Changes.</h2>
+        <p class="vr-body">
+          If this policy changes materially, I'll update the date at the
+          top and note the change. For the avoidance of doubt: this is a
+          working draft authored by a non-lawyer; for binding language
+          consult a professional. If you spot a problem with the policy,
+          email me.
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .vr-stub {
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+    padding-block: 4rem 6rem;
+  }
+  .vr-stub__row {
+    display: grid;
+    grid-template-columns: minmax(120px, 200px) 1fr;
+    gap: clamp(1rem, 4vw, 4rem);
+    align-items: start;
+    padding-block: 2rem;
+  }
+  @media (max-width: 720px) {
+    .vr-stub__row { grid-template-columns: 1fr; gap: 1rem; }
+  }
+  .vr-prose {
+    max-width: 78ch;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .vr-prose .vr-body { max-width: none; margin: 0; }
+  .vr-prose__h {
+    margin: 1.5rem 0 0;
+    font-family: var(--vr-serif);
+    font-weight: 500;
+    font-size: var(--vr-step-2);
+    color: var(--vr-bone);
+  }
+  .vr-prose__list {
+    margin: 0;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 0.5rem;
+    color: var(--vr-bone-dim);
+    font-family: var(--vr-serif-body);
+    line-height: 1.6;
+  }
+  .vr-prose a {
+    color: var(--vr-gold);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+  .vr-prose a:hover { color: var(--vr-iron-warm); }
+</style>

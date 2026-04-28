@@ -1,0 +1,31 @@
+# Cloudflare Pages reads this file and applies the listed headers to every
+# matching response (static and SSR). Keep edits surgical.
+
+/*
+  # Force HTTPS for two years; opt into the preload list.
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # Block content-type sniffing.
+  X-Content-Type-Options: nosniff
+
+  # Don't leak full referrer URLs to third parties.
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Drop access to powerful APIs we don't use.
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(self "https://app.cal.com"), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), interest-cohort=()
+
+  # Frame-ancestors covers modern browsers; X-Frame-Options is a legacy peer.
+  X-Frame-Options: SAMEORIGIN
+
+  # CSP is shipped Report-Only first so we can verify Cal.com / MailerLite /
+  # Google Fonts / Stripe (via Cal) don't trip it. Promote to enforced
+  # `Content-Security-Policy` once the report endpoint shows it's clean.
+  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'; object-src 'none'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://app.cal.com https://embed.cal.com https://js.stripe.com; frame-src 'self' https://app.cal.com https://*.cal.com https://js.stripe.com https://hooks.stripe.com; connect-src 'self' https://connect.mailerlite.com https://*.cal.com https://api.cal.com
+
+  # Long cache for hashed build assets is set elsewhere; deliberately not
+  # caching HTML at the edge so updates roll out cleanly.
+
+# Belt-and-suspenders: never cache the API endpoint anywhere.
+/api/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow

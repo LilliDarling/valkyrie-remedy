@@ -65,7 +65,10 @@ const outline: {
 ];
 ---
 
-<Layout title="Courses">
+<Layout
+  title="Courses"
+  description="A small course for founders who shipped a site with AI and now need to stop being afraid of their own repo. Waitlist open."
+>
   <main class="vr-shell vr-stub">
     <div class="vr-stub__row" data-reveal>
       <span class="vr-eyebrow">— Courses ⁄ §00</span>
@@ -106,6 +109,17 @@ const outline: {
             required
           />
           <button type="submit">Join</button>
+        </div>
+        {/* Honeypot — invisible to humans, irresistible to bots. */}
+        <div class="vr-waitlist__honeypot" aria-hidden="true">
+          <label for="vr-website">Website (leave empty)</label>
+          <input
+            id="vr-website"
+            name="website"
+            type="text"
+            tabindex="-1"
+            autocomplete="off"
+          />
         </div>
         <p class="vr-meta vr-waitlist__hint" id="waitlistHint">
           No marketing. One note when the doors open.
@@ -179,6 +193,14 @@ const outline: {
     max-width: 480px;
   }
   .vr-waitlist__hint { color: var(--vr-bone-faint); }
+  .vr-waitlist__honeypot {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
   .vr-waitlist.is-success .vr-field { border-color: var(--vr-gold); }
   .vr-waitlist.is-success .vr-waitlist__hint { color: var(--vr-gold); }
   .vr-waitlist.is-error .vr-waitlist__hint { color: oklch(0.72 0.10 60); }
@@ -307,6 +329,9 @@ const outline: {
       hint.textContent = "Sending…";
       form.classList.remove("is-error");
 
+      const honeypot = form.querySelector<HTMLInputElement>(
+        'input[name="website"]'
+      );
       try {
         const res = await fetch("/api/waitlist", {
           method: "POST",
@@ -314,6 +339,7 @@ const outline: {
           body: JSON.stringify({
             email: input.value.trim(),
             source: form.dataset.source,
+            website: honeypot?.value ?? "",
           }),
         });
         const data = (await res.json().catch(() => ({}))) as {
