@@ -15,7 +15,7 @@ const {
   title,
   description = "Code reviews, rebuilds, and security audits for founders and creators who shipped a site with AI and now need it made real.",
   bodyClass = "",
-  ogImage,
+  ogImage = "/Valkyrie.png",
   ogType = "website",
   noindex = false,
 } = Astro.props;
@@ -66,8 +66,8 @@ if (absoluteOgImage) orgLd.image = absoluteOgImage;
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/Valkyrie.png" sizes="500x500" />
+    <link rel="apple-touch-icon" href="/Valkyrie.png" />
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
 
     <!-- Open Graph -->
@@ -81,8 +81,8 @@ if (absoluteOgImage) orgLd.image = absoluteOgImage;
       absoluteOgImage && (
         <>
           <meta property="og:image" content={absoluteOgImage} />
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="630" />
+          <meta property="og:image:width" content="500" />
+          <meta property="og:image:height" content="500" />
           <meta property="og:image:alt" content="Valkyrie Remedy" />
         </>
       )
@@ -91,7 +91,7 @@ if (absoluteOgImage) orgLd.image = absoluteOgImage;
     <!-- Twitter / X -->
     <meta
       name="twitter:card"
-      content={absoluteOgImage ? "summary_large_image" : "summary"}
+      content={absoluteOgImage ? "summary" : "summary"}
     />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
