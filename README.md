@@ -38,3 +38,4 @@ npm run preview:worker   # Local Worker preview via Wrangler
 npm run check            # astro check (typecheck)
 npm run deploy           # Build + wrangler deploy
 ```
+
